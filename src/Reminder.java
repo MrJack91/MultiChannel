@@ -8,6 +8,9 @@ import Message.Message;
  * @author michael
  *
  */
-public class Reminder extends Message {
-
+public interface Reminder extends Message {
+	
+	public Message getOriginalMessage();
+	
+	
 }

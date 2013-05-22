@@ -7,6 +7,6 @@ package Message;
  * @author michael
  *
  */
-public class Print extends Message {
+public interface Print extends Message {
 
 }

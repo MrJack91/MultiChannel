@@ -7,6 +7,6 @@ package Message;
  * @author michael
  *
  */
-public class MMSReminderImpl extends MMSmpl {
+public class MMSReminderImpl extends MMSImpl {
 
 }

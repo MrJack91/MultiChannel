@@ -8,5 +8,5 @@ package Message;
  *
  */
 public class AbstractMessageImpl {
-
+	
 }

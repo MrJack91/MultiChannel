@@ -6,6 +6,8 @@
  * @author michael
  *
  */
-public class Queue {
+public interface Queue {
+	
+	public void processQueue();
 
 }

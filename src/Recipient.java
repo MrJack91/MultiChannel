@@ -6,6 +6,6 @@
  * @author michael
  *
  */
-public class Recipient {
+public interface Recipient {
 
 }
