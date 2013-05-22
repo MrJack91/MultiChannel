@@ -7,6 +7,6 @@ package Message;
  * @author michael
  *
  */
-public class SMS extends Message {
+public interface SMS extends Message {
 
 }

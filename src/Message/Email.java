@@ -7,6 +7,6 @@ package Message;
  * @author michael
  *
  */
-public class Email extends Message {
+public interface Email extends Message {
 
 }
