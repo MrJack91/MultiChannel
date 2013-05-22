@@ -7,6 +7,6 @@ package ch.zhaw.mima.message;
  * @author michael
  *
  */
-public interface Print extends Message {
+public interface PrinterJob extends Message {
 
 }

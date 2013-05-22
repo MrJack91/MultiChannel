@@ -1,12 +1,33 @@
 package ch.zhaw.mima.validator;
+
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+
+import ch.zhaw.mima.addresses.EmailAddress;
+
 /**
  * 
  */
 
 /**
  * @author michael
- *
+ * 
  */
-public interface EmailAddressValidator extends RecipientValidator {
+public class EmailAddressValidator implements AddressValidator<EmailAddress> {
+
+	/**
+	 * using the apache email library, as suggested here:
+	 * http://stackoverflow.com/a/5931718/1463534
+	 */
+	@Override
+	public void validate(EmailAddress address) throws ValidationException {
+
+		try {
+			new InternetAddress(address.getEmail());
+		} catch (AddressException e) {
+			throw new ValidationException(e.getMessage());
+		}
+
+	}
 
 }

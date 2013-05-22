@@ -3,7 +3,7 @@ package ch.zhaw.mima.message;
 import java.util.ArrayList;
 import java.util.List;
 
-import ch.zhaw.mima.Recipient;
+import ch.zhaw.mima.addresses.Address;
 
 /**
  * 
@@ -16,11 +16,17 @@ import ch.zhaw.mima.Recipient;
 public abstract class AbstractMessageImpl implements Message {
 
 	private String text;
-	private List<Recipient> recipients;
+	private List<Address> addresses;
 	private int sendTime;
 
+	@Override
+	public String toString() {
+		return "Message [text=" + text + ", addresses=" + addresses
+				+ ", sendTime=" + sendTime + "]";
+	}
+
 	public AbstractMessageImpl() {
-		recipients = new ArrayList<Recipient>();
+		addresses = new ArrayList<Address>();
 	}
 
 	public String getText() {
@@ -28,8 +34,8 @@ public abstract class AbstractMessageImpl implements Message {
 	}
 
 	@Override
-	public List<Recipient> getRecipient() {
-		return recipients;
+	public List<Address> getAdresses() {
+		return addresses;
 	}
 
 	@Override
@@ -44,8 +50,8 @@ public abstract class AbstractMessageImpl implements Message {
 	}
 
 	@Override
-	public void addRecipient(Recipient recipient) {
-		recipients.add(recipient);
+	public void addAddress(Address recipient) {
+		addresses.add(recipient);
 
 	}
 
