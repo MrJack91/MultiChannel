@@ -1,13 +1,18 @@
 package ch.zhaw.mima;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 public class App implements ActionListener {
 
@@ -25,8 +30,8 @@ public class App implements ActionListener {
 		JFrame mainFrame = new JFrame();
 		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		JPanel mainPanel = new JPanel();
-		mainPanel.setLayout(new BorderLayout());
+		// JPanel mainPanel = new JPanel();
+		// mainPanel.setLayout(new BorderLayout());
 		
 		// create Buttons
 		JButton buSms = new JButton("SMS versenden");
@@ -55,22 +60,61 @@ public class App implements ActionListener {
 		panelMsgType.add(buLetter);
 		
 		// add panel to main frame
-		mainPanel.add(panelMsgType);
+		// mainPanel.add(panelMsgType);
 		
 		// show frame
-		mainFrame.getContentPane().add(BorderLayout.CENTER, mainPanel);
+		// mainFrame.getContentPane().add(BorderLayout.CENTER, mainPanel);
+		mainFrame.getContentPane().add(panelMsgType);
 		mainFrame.setSize(500, 220);
 		mainFrame.setVisible(true);
 	}
 
 	public void actionPerformed(ActionEvent arg0) {
+		// set text from button to new frame
+		JFrame mainFrame = new JFrame(((JButton) arg0.getSource()).getText());
+		// mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
+		// JPanel mainPanel = new JPanel();
+		// mainPanel.setLayout(new BorderLayout());
 		
+		// content for all elements
+		JPanel paEditor = new JPanel();
+		paEditor.setLayout(new BoxLayout(paEditor, BoxLayout.Y_AXIS));
+		
+		// set recipient
 		switch (arg0.getActionCommand()) {
 			case "sms":
-				
+			case "mail":
+				JLabel lbRecipient = new JLabel("Empfänger");
+				JTextArea taRecipient = new JTextArea();
+				paEditor.add(lbRecipient);
+				paEditor.add(taRecipient);
+				break;
+			case "letter":
+				JLabel lbAddress = new JLabel("Adresse");
+				JTextArea taAddress = new JTextArea();
+				paEditor.add(lbAddress);
+				paEditor.add(taAddress);
 				break;
 		}
 		
+		// set message input
+		JLabel lbText = new JLabel("Text");
+		JTextArea taText = new JTextArea();
+		taText.setSize(30, 30);
+		paEditor.add(lbText);
+		paEditor.add(taText);
+		
+		
+		// add panel to main frame
+		// mainPanel.add(paEditor);
+		
+		// show frame
+		// mainFrame.getContentPane().add(BorderLayout.CENTER, mainPanel);
+		mainFrame.getContentPane().add(paEditor);
+		mainFrame.setSize(500, 700);
+		mainFrame.setVisible(true);
+		mainFrame.toFront();
+		mainFrame.setAlwaysOnTop(true);
 	}
 }
