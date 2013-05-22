@@ -7,7 +7,7 @@ package ch.zhaw.mima.message;
  * @author michael
  *
  */
-public class PrintImpl extends AbstractMessageImpl {
+public class PrinterJobImpl extends AbstractMessageImpl {
 
 	@Override
 	public void send() {

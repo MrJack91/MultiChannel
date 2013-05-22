@@ -2,7 +2,7 @@ package ch.zhaw.mima.message;
 
 import java.util.List;
 
-import ch.zhaw.mima.Recipient;
+import ch.zhaw.mima.addresses.Address;
 
 /**
  * 
@@ -12,10 +12,10 @@ import ch.zhaw.mima.Recipient;
  * @author michael
  * 
  */
-public interface Message {
+public interface Message<T extends Address> {
 	public String getText();
 
-	public List<Recipient> getRecipient();
+	public List<Address> getAdresses();
 
 	public int getSendTime();
 
@@ -24,7 +24,7 @@ public interface Message {
 	
 	public void setText(String text);
 	
-	public void addRecipient(Recipient recipient);
+	public void addAddress(T address);
 	
 	public void setSendTime(int sendTime);
 	

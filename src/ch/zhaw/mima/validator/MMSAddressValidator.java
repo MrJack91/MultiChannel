@@ -3,10 +3,14 @@
  */
 package ch.zhaw.mima.validator;
 
+import ch.zhaw.mima.addresses.MMSAddress;
+
 /**
  * @author michael
  *
  */
-public interface MMSAddressValidator extends RecipientValidator {
+public class MMSAddressValidator extends PhoneAddressValidator<MMSAddress> implements AddressValidator<MMSAddress> {
+
+	
 
 }
