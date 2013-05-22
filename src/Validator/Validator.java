@@ -7,6 +7,8 @@ package Validator;
  * @author michael
  *
  */
-public class Validator {
+public interface Validator {
+	
+	public Error[] validate();
 
 }
