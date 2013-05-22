@@ -1,20 +1,22 @@
 package ch.zhaw.mima;
+
 import java.util.Date;
 import java.util.List;
 
-import ch.zhaw.mima.message.Message;
-
+import ch.zhaw.mima.addresses.Address;
+import ch.zhaw.mima.message.Sendable;
+import ch.zhaw.mima.validator.AddressValidatorException;
 
 public class QueueImpl implements Queue {
 
-	private List<Message> messages;
+	private List<Sendable<? extends Address>> sendables;
 
 	@Override
 	public void processQueue() {
 
-		for (Message oneMessage : messages) {
-			if (oneMessage.getSendTime() <= getNow()) {
-				oneMessage.send();
+		for (Sendable<? extends Address> oneSendable : sendables) {
+			if (oneSendable.getSendTime() <= getNow()) {
+				oneSendable.send();
 			}
 		}
 
@@ -25,8 +27,11 @@ public class QueueImpl implements Queue {
 	}
 
 	@Override
-	public void addMessage(Message message) {
-		messages.add(message);
+	public void addSendable(Sendable<? extends Address> sendable)
+			throws AddressValidatorException {
+		for (Address address : sendable.getAdresses())
+			address.validate();
+		sendables.add(sendable);
 
 	}
 

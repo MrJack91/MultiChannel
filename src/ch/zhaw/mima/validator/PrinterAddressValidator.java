@@ -6,8 +6,6 @@ package ch.zhaw.mima.validator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import javax.mail.internet.AddressException;
-
 import ch.zhaw.mima.addresses.PrinterAddress;
 
 /**
@@ -29,7 +27,7 @@ public class PrinterAddressValidator implements AddressValidator<PrinterAddress>
 	 * @see ch.zhaw.mima.validator.AddressValidator#validate(ch.zhaw.mima.validator.Address)
 	 */
 	@Override
-	public void validate(PrinterAddress address) throws ValidationException {
+	public void validate(PrinterAddress address) throws AddressValidatorException {
 
 		checkIfValidAddress(address);
 		checkIfReachable(address);
@@ -38,19 +36,19 @@ public class PrinterAddressValidator implements AddressValidator<PrinterAddress>
 
 	}
 
-	private void checkIfValidAddress(PrinterAddress address)  throws ValidationException{
+	private void checkIfValidAddress(PrinterAddress address)  throws AddressValidatorException{
 		Pattern pattern = Pattern.compile(PATTERN);
 		Matcher matcher = pattern.matcher(address.getPrinterIP());
 		if(!matcher.matches())
-			throw new ValidationException("invalid ip: "+address.getPrinterIP());
+			throw new AddressValidatorException("invalid ip: "+address.getPrinterIP());
 	}
 
-	private void checkIfReachable(PrinterAddress address)  throws ValidationException{
+	private void checkIfReachable(PrinterAddress address)  throws AddressValidatorException{
 		// TODO: ping ip address
 
 	}
 
-	private void checkIfPrinter(PrinterAddress address)  throws ValidationException{
+	private void checkIfPrinter(PrinterAddress address)  throws AddressValidatorException{
 		// TODO: check if there is a printer behind this ip address
 
 	}

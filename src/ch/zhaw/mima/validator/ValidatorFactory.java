@@ -1,18 +1,16 @@
 package ch.zhaw.mima.validator;
 
 
+
 public class ValidatorFactory {
 	
 	
-	public static MMSAddressValidator createMMSAddressValidator()
+	public static PhoneAddressValidator createPhoneValidator()
 	{
-		return new MMSAddressValidator();
+		return new PhoneAddressValidator();
 	}
 	
-	public static SMSAddressValidator createSmsAddressValidator()
-	{
-		return new SMSAddressValidator();
-	}
+
 	
 	public static PrinterAddressValidator createPrinterAddressValidator()
 	{

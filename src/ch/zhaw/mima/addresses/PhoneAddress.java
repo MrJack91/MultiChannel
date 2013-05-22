@@ -1,5 +1,9 @@
 package ch.zhaw.mima.addresses;
 
+import ch.zhaw.mima.validator.AddressValidatorException;
+import ch.zhaw.mima.validator.ValidatorFactory;
+
+
 public class PhoneAddress implements Address{
 
 	protected String number;
@@ -18,5 +22,13 @@ public class PhoneAddress implements Address{
 	public String toString() {
 		return "PhoneAddress [number=" + number + "]";
 	}
+
+	@Override
+	public void validate() throws AddressValidatorException {
+		ValidatorFactory.createPhoneValidator().validate(this);
+		
+	}
+
+	
 
 }

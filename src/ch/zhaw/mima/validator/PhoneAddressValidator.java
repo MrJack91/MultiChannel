@@ -2,10 +2,10 @@ package ch.zhaw.mima.validator;
 
 import ch.zhaw.mima.addresses.PhoneAddress;
 
-public class PhoneAddressValidator<T extends PhoneAddress> implements AddressValidator<T> {
+public class PhoneAddressValidator implements AddressValidator<PhoneAddress> {
 
 	@Override
-	public void validate(PhoneAddress address) throws ValidationException {
+	public void validate(PhoneAddress address) throws AddressValidatorException {
 		
 		
 		

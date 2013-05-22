@@ -20,12 +20,12 @@ public class EmailAddressValidator implements AddressValidator<EmailAddress> {
 	 * http://stackoverflow.com/a/5931718/1463534
 	 */
 	@Override
-	public void validate(EmailAddress address) throws ValidationException {
+	public void validate(EmailAddress address) throws AddressValidatorException {
 
 		try {
 			new InternetAddress(address.getEmail());
 		} catch (AddressException e) {
-			throw new ValidationException(e.getMessage());
+			throw new AddressValidatorException(e.getMessage());
 		}
 
 	}

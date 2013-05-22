@@ -1,8 +1,8 @@
 package ch.zhaw.mima.validator;
 
-public class ValidationException extends Exception {
+public class AddressValidatorException extends Exception {
 
-	public ValidationException(String message) {
+	public AddressValidatorException(String message) {
 		super(message);
 	}
 

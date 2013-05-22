@@ -1,5 +1,8 @@
 package ch.zhaw.mima.addresses;
 
+import ch.zhaw.mima.validator.AddressValidatorException;
+import ch.zhaw.mima.validator.ValidatorFactory;
+
 public class PrinterAddress implements Address{
 	
 	
@@ -21,6 +24,12 @@ public class PrinterAddress implements Address{
 
 	public void setPrinterIP(String printerIP) {
 		this.printerIP = printerIP;
+	}
+
+	@Override
+	public void validate() throws AddressValidatorException {
+		ValidatorFactory.createPrinterAddressValidator().validate(this);
+		
 	}
 
 }

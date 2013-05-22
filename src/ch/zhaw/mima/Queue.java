@@ -1,5 +1,7 @@
 package ch.zhaw.mima;
-import ch.zhaw.mima.message.Message;
+import ch.zhaw.mima.addresses.Address;
+import ch.zhaw.mima.message.Sendable;
+import ch.zhaw.mima.validator.AddressValidatorException;
 
 /**
  * 
@@ -13,6 +15,6 @@ public interface Queue {
 	
 	public void processQueue();
 	
-	public void addMessage(Message message);
+	public void addSendable(Sendable<? extends Address> sendable) throws AddressValidatorException;
 
 }

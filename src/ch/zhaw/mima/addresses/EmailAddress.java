@@ -1,5 +1,9 @@
 package ch.zhaw.mima.addresses;
 
+import ch.zhaw.mima.validator.AddressValidatorException;
+import ch.zhaw.mima.validator.ValidatorFactory;
+
+
 public class EmailAddress implements Address {
 	
 	
@@ -17,6 +21,16 @@ public class EmailAddress implements Address {
 	public String toString() {
 		return "EmailAddress [email=" + email + "]";
 	}
+
+	@Override
+	public void validate() throws AddressValidatorException {
+		ValidatorFactory.createEmailAddressValidator().validate(this);
+	}
+
+
+	
+
+	
 
 	
 }

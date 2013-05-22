@@ -13,10 +13,10 @@ import ch.zhaw.mima.addresses.Address;
  * @author michael
  * 
  */
-public abstract class AbstractMessageImpl implements Message {
+public abstract class AbstractMessageImpl<T extends Address> implements Message<T> {
 
 	private String text;
-	private List<Address> addresses;
+	private List<T> addresses;
 	private int sendTime;
 
 	@Override
@@ -26,7 +26,7 @@ public abstract class AbstractMessageImpl implements Message {
 	}
 
 	public AbstractMessageImpl() {
-		addresses = new ArrayList<Address>();
+		addresses = new ArrayList<T>();
 	}
 
 	public String getText() {
@@ -34,12 +34,12 @@ public abstract class AbstractMessageImpl implements Message {
 	}
 
 	@Override
-	public List<Address> getAdresses() {
+	public List<T> getAdresses() {
 		return addresses;
 	}
 
 	@Override
-	public int getSendTime() {
+	public long getSendTime() {
 		return sendTime;
 	}
 
@@ -50,8 +50,8 @@ public abstract class AbstractMessageImpl implements Message {
 	}
 
 	@Override
-	public void addAddress(Address recipient) {
-		addresses.add(recipient);
+	public void addAddress(T address) {
+		addresses.add(address);
 
 	}
 
