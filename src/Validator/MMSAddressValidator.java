@@ -7,6 +7,6 @@ package Validator;
  * @author michael
  *
  */
-public class MMSAddressValidator extends RecipientValidator {
+public interface MMSAddressValidator extends RecipientValidator {
 
 }
