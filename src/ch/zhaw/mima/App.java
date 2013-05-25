@@ -13,7 +13,15 @@ public class App {
 		app.start();
 	}
 
+	/**
+   * @uml.property  name="messagingService"
+   * @uml.associationEnd  multiplicity="(1 1)"
+   */
 	private MessagingService messagingService;
+	/**
+   * @uml.property  name="ticker"
+   * @uml.associationEnd  multiplicity="(1 1)"
+   */
 	private Ticker ticker;
 
 	public App() {
@@ -34,6 +42,10 @@ public class App {
 		mainModule.start();
 	}
 
+	/**
+   * @return
+   * @uml.property  name="messagingService"
+   */
 	public MessagingService getMessagingService() {
 		return messagingService;
 	}

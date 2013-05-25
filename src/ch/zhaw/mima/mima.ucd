@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<editmodel:ClassDiagramEditModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editmodel="editmodel.xmi" xmlns:options="options.xmi" name="mima" size="839,507" id="ch.zhaw.mima" metadata="uml2-1.0" initialized="true" tag="10" key="32303037303533312D3130204D756C74694368616E6E656C">
+  <children xsi:type="editmodel:ClassEditModel" name="App" location="227,384" size="69,103" id="ch.zhaw.mima/App" runTimeClassModel="main([Ljava.lang.String;),start(),App()">
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="46,54">
+      <children xsi:type="editmodel:MethodEditModel" name="App" id="ch.zhaw.mima/App#App()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="main" id="ch.zhaw.mima/App#main([Ljava.lang.String;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="start" id="ch.zhaw.mima/App#start()"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="Ticker" location="617,50" size="97,103" id="ch.zhaw.mima/Ticker" runTimeClassModel="Ticker(),run(),addTickable(Lch.zhaw.mima.Tickable;)">
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="74,54">
+      <children xsi:type="editmodel:MethodEditModel" name="Ticker" id="ch.zhaw.mima/Ticker#Ticker()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="addTickable" id="ch.zhaw.mima/Ticker#addTickable(Lch.zhaw.mima.Tickable;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="run" id="ch.zhaw.mima/Ticker#run()"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:InterfaceEditModel" name="Reminder" location="50,384" size="127,77" id="ch.zhaw.mima/Reminder" runTimeClassModel="getOriginalMessage()">
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="104,18">
+      <children xsi:type="editmodel:MethodEditModel" name="getOriginalMessage" id="ch.zhaw.mima/Reminder#getOriginalMessage()"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="MessagingService" location="269,177" size="134,157" id="ch.zhaw.mima/MessagingService" runTimeClassModel="addMessage(Lch.zhaw.mima.message.SMS;),onTick(),addMessage(Lch.zhaw.mima.message.MMS;),MessagingService(),addMessage(Lch.zhaw.mima.message.PrinterJob;),addMessage(Lch.zhaw.mima.message.Email;)">
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="95,108">
+      <children xsi:type="editmodel:MethodEditModel" name="MessagingService" id="ch.zhaw.mima/MessagingService#MessagingService()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="addMessage" id="ch.zhaw.mima/MessagingService#addMessage(Lch.zhaw.mima.message.PrinterJob;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="addMessage" id="ch.zhaw.mima/MessagingService#addMessage(Lch.zhaw.mima.message.Email;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="addMessage" id="ch.zhaw.mima/MessagingService#addMessage(Lch.zhaw.mima.message.SMS;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="addMessage" id="ch.zhaw.mima/MessagingService#addMessage(Lch.zhaw.mima.message.MMS;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="onTick" id="ch.zhaw.mima/MessagingService#onTick()"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="ch.zhaw.mima/Tickable&lt;-ch.zhaw.mima/MessagingService" source="//@children.3" target="//@children.4" targetEnd="//@children.3/@sourceConnections.0/@children.1" sourceEnd="//@children.3/@sourceConnections.0/@children.0" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="67,0" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="43,77"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:InterfaceEditModel" targetConnections="//@children.3/@sourceConnections.0" name="Tickable" location="293,50" size="86,77" id="ch.zhaw.mima/Tickable" runTimeClassModel="onTick()">
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="53,18">
+      <children xsi:type="editmodel:MethodEditModel" name="onTick" id="ch.zhaw.mima/Tickable#onTick()"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="MainModule" location="453,221" size="114,103" id="ch.zhaw.mima/MainModule" runTimeClassModel="actionPerformed(Ljava.awt.event.ActionEvent;),start(),MainModule(Lch.zhaw.mima.App;)">
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="91,54">
+      <children xsi:type="editmodel:MethodEditModel" name="MainModule" id="ch.zhaw.mima/MainModule#MainModule(Lch.zhaw.mima.App;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="actionPerformed" id="ch.zhaw.mima/MainModule#actionPerformed(Ljava.awt.event.ActionEvent;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="start" id="ch.zhaw.mima/MainModule#start()"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="ch.zhaw.mima/BaseModule&lt;-ch.zhaw.mima/MainModule" source="//@children.5" target="//@children.6" targetEnd="//@children.5/@sourceConnections.0/@children.1" sourceEnd="//@children.5/@sourceConnections.0/@children.0" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="57,0" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="52,121"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.5/@sourceConnections.0" name="BaseModule" location="458,50" size="104,121" id="ch.zhaw.mima/BaseModule" runTimeClassModel="BaseModule(Lch.zhaw.mima.App;Ljava.lang.String;),BaseModule(Lch.zhaw.mima.App;),BaseModule(Lch.zhaw.mima.App;Ljava.lang.String;Ljava.awt.GraphicsConfiguration;),BaseModule(Lch.zhaw.mima.App;Ljava.awt.GraphicsConfiguration;)">
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="73,72">
+      <children xsi:type="editmodel:MethodEditModel" name="BaseModule" id="ch.zhaw.mima/BaseModule#BaseModule(Lch.zhaw.mima.App;Ljava.lang.String;Ljava.awt.GraphicsConfiguration;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="BaseModule" id="ch.zhaw.mima/BaseModule#BaseModule(Lch.zhaw.mima.App;Ljava.lang.String;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="BaseModule" id="ch.zhaw.mima/BaseModule#BaseModule(Lch.zhaw.mima.App;Ljava.awt.GraphicsConfiguration;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="BaseModule" id="ch.zhaw.mima/BaseModule#BaseModule(Lch.zhaw.mima.App;)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="MessageQueueImpl" location="50,195" size="169,103" id="ch.zhaw.mima/MessageQueueImpl" runTimeClassModel="processQueue(),MessageQueueImpl(),addSendable(Lch.zhaw.mima.message.Sendable;)">
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="103,54">
+      <children xsi:type="editmodel:MethodEditModel" name="MessageQueueImpl" id="ch.zhaw.mima/MessageQueueImpl#MessageQueueImpl()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="addSendable" id="ch.zhaw.mima/MessageQueueImpl#addSendable(Lch.zhaw.mima.message.Sendable;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="processQueue" id="ch.zhaw.mima/MessageQueueImpl#processQueue()"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="ch.zhaw.mima/MessageQueue&lt;-ch.zhaw.mima/MessageQueueImpl" source="//@children.7" target="//@children.8" targetEnd="//@children.7/@sourceConnections.0/@children.1" sourceEnd="//@children.7/@sourceConnections.0/@children.0" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="84,0" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="73,95"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:InterfaceEditModel" targetConnections="//@children.7/@sourceConnections.0" name="MessageQueue" location="61,50" size="146,95" id="ch.zhaw.mima/MessageQueue" runTimeClassModel="processQueue(),addSendable(Lch.zhaw.mima.message.Sendable;)">
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="82,36">
+      <children xsi:type="editmodel:MethodEditModel" name="addSendable" id="ch.zhaw.mima/MessageQueue#addSendable(Lch.zhaw.mima.message.Sendable;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="processQueue" id="ch.zhaw.mima/MessageQueue#processQueue()"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <diagramOptions xsi:type="options:ClassDiagramOptions" interactive="false" level="-1" showScope="InPackage" properties="wireOptions=1;Product=eUML2"/>
+  <boardSetting snapToGeometry="true" gridEnabled="true" gridSpacing="15,15" gridOrigin="0,0" rulerUnit="pixel" gridVisibility="false">
+    <leftRuler/>
+    <topRuler/>
+  </boardSetting>
+  <classDiagramPreferences xsi:type="editmodel:UMLClassDiagramPreference" showPopupBars="true" showConnectionHandles="true" attributeSorter="Natural" methodSorter="Natural" showClassStereotype="true" showPackageStereotype="true" showDependencyStereotype="true" showInterfaceStereotype="true" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+</editmodel:ClassDiagramEditModel>

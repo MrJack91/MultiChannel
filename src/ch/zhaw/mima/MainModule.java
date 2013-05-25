@@ -37,9 +37,25 @@ public class MainModule extends BaseModule implements ActionListener {
 	 * 
 	 */
 	private static final long serialVersionUID = 499999116029107784L;
+	/**
+   * @uml.property  name="buSms"
+   * @uml.associationEnd  
+   */
 	private JButton buSms;
+	/**
+   * @uml.property  name="buMail"
+   * @uml.associationEnd  
+   */
 	private JButton buMail;
+	/**
+   * @uml.property  name="buPrint"
+   * @uml.associationEnd  
+   */
 	private JButton buPrint;
+	/**
+   * @uml.property  name="buMms"
+   * @uml.associationEnd  
+   */
 	private JButton buMms;
 
 	public void start() {
@@ -50,13 +66,16 @@ public class MainModule extends BaseModule implements ActionListener {
 		// mainPanel.setLayout(new BorderLayout());
 
 		// create Buttons
-		createButtons();
+		this.createButtons();
 
+		// setSize
+		this.setButtonSize(200, 20);
+		
 		// set commands
-		setCommands();
+		this.setCommands();
 
 		// set listener
-		setActionListener();
+		this.setActionListener();
 
 		// Add buttons to panel
 		JPanel panelMsgType = new JPanel();
@@ -92,6 +111,13 @@ public class MainModule extends BaseModule implements ActionListener {
 		buMail = new JButton("Email versenden");
 		buPrint = new JButton("Print versenden");
 		buMms = new JButton("MMS versenden");
+	}
+	
+	private void setButtonSize(int width, int height) {
+		buSms.setSize(width, height);
+		buMail.setSize(width, height);
+		buPrint.setSize(width, height);
+		buMms.setSize(width, height);
 	}
 
 	public void actionPerformed(ActionEvent arg0) {
