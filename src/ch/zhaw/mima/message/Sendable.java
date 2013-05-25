@@ -1,10 +1,11 @@
 package ch.zhaw.mima.message;
 
 import java.util.List;
+import java.util.concurrent.Delayed;
 
 import ch.zhaw.mima.addresses.Address;
 
-public interface Sendable<T extends Address> {
+public interface Sendable<T extends Address>{
 
 	public void send();
 

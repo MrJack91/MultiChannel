@@ -1,18 +1,17 @@
 package ch.zhaw.mima;
 
-import java.util.ArrayList;
+import java.util.ArrayDeque;
 import java.util.Date;
-import java.util.List;
 
 import ch.zhaw.mima.addresses.Address;
 import ch.zhaw.mima.message.Sendable;
 
 public class MessageQueueImpl<T extends Address> implements MessageQueue<T> {
 
-	private List<Sendable<T>> sendables;
+	private ArrayDeque<Sendable<T>> sendables;
 
 	public MessageQueueImpl() {
-		sendables = new ArrayList<Sendable<T>>();
+		sendables = new ArrayDeque<Sendable<T>>();
 	}
 
 	@Override
@@ -21,6 +20,7 @@ public class MessageQueueImpl<T extends Address> implements MessageQueue<T> {
 		for (Sendable<? extends Address> oneSendable : sendables) {
 			if (oneSendable.getSendTime() <= getNow()) {
 				oneSendable.send();
+				sendables.remove(oneSendable);
 			}
 		}
 
