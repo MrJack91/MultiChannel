@@ -5,15 +5,29 @@ package ch.zhaw.mima.gui;
 
 import java.awt.Component;
 import java.awt.FlowLayout;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
+import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JSpinner;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.SpinnerDateModel;
+import javax.swing.SpinnerModel;
+import javax.swing.border.Border;
+
+import org.freixas.jcalendar.DateEvent;
+import org.freixas.jcalendar.DateListener;
+import org.freixas.jcalendar.JCalendar;
+import org.freixas.jcalendar.JCalendarCombo;
 
 /**
  * @author michael
@@ -67,7 +81,8 @@ public class AbstractMessagingModule {
 	protected void init() {
 		mainFrame = new JFrame(this.frameTitle);
 		// mainFrame.setLayout(new FlowLayout());
-		// mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // sonst schliesst das ganze Programm
+		// mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // sonst
+		// schliesst das ganze Programm
 
 		// content for all elements
 		paEditor = new JPanel();
@@ -116,7 +131,9 @@ public class AbstractMessagingModule {
 		JTextArea taRecipient = new JTextArea();
 		taRecipient.setAlignmentX(Component.LEFT_ALIGNMENT);
 		// make this scrollable
-		JScrollPane spRecipient = new JScrollPane (taRecipient, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		JScrollPane spRecipient = new JScrollPane(taRecipient,
+		    JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+		    JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		spRecipient.setAlignmentX(Component.LEFT_ALIGNMENT);
 		this.paEditor.add(lbRecipient);
 		this.paEditor.add(spRecipient);
@@ -128,7 +145,9 @@ public class AbstractMessagingModule {
 		lbText.setAlignmentX(Component.LEFT_ALIGNMENT);
 		JTextArea taText = new JTextArea();
 		taText.setAlignmentX(Component.LEFT_ALIGNMENT);
-		JScrollPane spText = new JScrollPane (taText, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		JScrollPane spText = new JScrollPane(taText,
+		    JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+		    JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		spText.setAlignmentX(Component.LEFT_ALIGNMENT);
 		this.paEditor.add(lbText);
 		this.paEditor.add(spText);
@@ -138,38 +157,51 @@ public class AbstractMessagingModule {
 		// set message input
 		JLabel lbTime = new JLabel("Zeit:");
 		lbTime.setAlignmentX(Component.LEFT_ALIGNMENT);
-		
-		JTextField tfTime = new JTextField();
-		tfTime.setSize(120, 50);
-		tfTime.setAlignmentX(Component.LEFT_ALIGNMENT);
-		
-		JButton buSend = new JButton("senden");
-		buSend.setAlignmentX(Component.LEFT_ALIGNMENT);
-		
-		paEditor.add(lbTime);
-		paEditor.add(tfTime);
-		paEditor.add(buSend);
+
+		Border etchedBorder = BorderFactory.createEtchedBorder();
+		Border emptyBorder = BorderFactory.createEmptyBorder(10, 10, 10, 10);
+		Border compoundBorder = BorderFactory.createCompoundBorder(etchedBorder,
+		    emptyBorder);
 		
 		/*
+		JCalendar calendar = new JCalendar(JCalendar.DISPLAY_DATE
+		    | JCalendar.DISPLAY_TIME, true);
+	 	*/
+
+		JCalendarCombo calendar = new JCalendarCombo(
+		    Calendar.getInstance(Locale.GERMAN), Locale.GERMAN,
+		    JCalendarCombo.DISPLAY_DATE | JCalendarCombo.DISPLAY_TIME, true);
 		
-		JPanel pControl = new JPanel();
-		pControl.setLayout(new FlowLayout());
-		JLabel lbTime = new JLabel("Zeit:");
-		lbTime.setAlignmentX(Component.LEFT_ALIGNMENT);
-		
-		JTextField tfTime = new JTextField();
-		tfTime.setSize(120, 50);
-		tfTime.setAlignmentX(Component.LEFT_ALIGNMENT);
+		calendar.setBorder(compoundBorder);
+		calendar.addDateListener(new MyDateListener());
 		
 		JButton buSend = new JButton("senden");
 		buSend.setAlignmentX(Component.LEFT_ALIGNMENT);
-		
-		pControl.add(lbTime);
-		pControl.add(tfTime);
-		pControl.add(buSend);
-		
-		this.paEditor.add(pControl);
-		*/
+
+		paEditor.add(lbTime);
+		paEditor.add(calendar);
+		paEditor.add(buSend);
 	}
-	
+
+	// **********************************************************************
+	// Inner Classes
+	// **********************************************************************
+
+	private class MyDateListener implements DateListener {
+
+		public void dateChanged(DateEvent e) {
+			Calendar c = e.getSelectedDate();
+			if (c != null) {
+				System.out.println(c.getTime());
+			} else {
+				System.out.println("No time selected.");
+			}
+		}
+
+	}
+
+	// **********************************************************************
+	// End Inner Classes
+	// **********************************************************************
+
 }
