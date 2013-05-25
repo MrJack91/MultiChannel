@@ -81,5 +81,7 @@ public abstract class AbstractMessageImpl<T extends Address> implements Message<
 	public void setSendTime(int sendTime) {
 		this.sendTime = sendTime;
 	}
+	
+	
 
 }
