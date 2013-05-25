@@ -12,11 +12,7 @@ import ch.zhaw.mima.addresses.PhoneAddress;
  */
 public class MMSImpl extends AbstractMessageImpl<PhoneAddress> implements MMS {
 
-	@Override
-	public void send() {
-		// TODO Auto-generated method stub
-		
-	}
+
 
 
 

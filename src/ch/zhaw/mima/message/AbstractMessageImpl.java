@@ -1,6 +1,7 @@
 package ch.zhaw.mima.message;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import ch.zhaw.mima.addresses.Address;
@@ -13,16 +14,22 @@ import ch.zhaw.mima.addresses.Address;
  * @author michael
  * 
  */
-public abstract class AbstractMessageImpl<T extends Address> implements Message<T> {
+public abstract class AbstractMessageImpl<T extends Address> implements
+		Message<T> {
 
 	private String text;
 	private List<T> addresses;
-	private int sendTime;
+	private long sendTime;
 
 	@Override
 	public String toString() {
 		return "Message [text=" + text + ", addresses=" + addresses
-				+ ", sendTime=" + sendTime + "]";
+				+ ", sendTime=" + printTime() + "]";
+	}
+
+	private String printTime() {
+
+		return new Date(sendTime).toString();
 	}
 
 	public AbstractMessageImpl() {
@@ -56,10 +63,8 @@ public abstract class AbstractMessageImpl<T extends Address> implements Message<
 	}
 
 	@Override
-	public void setSendTime(int sendTime) {
+	public void setSendTime(long sendTime) {
 		this.sendTime = sendTime;
 	}
-	
-	
 
 }

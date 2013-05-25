@@ -12,11 +12,7 @@ import ch.zhaw.mima.addresses.PrinterAddress;
 public class PrinterJobImpl extends AbstractMessageImpl<PrinterAddress> implements PrinterJob 
 {
 
-	@Override
-	public void send() {
-		// TODO Auto-generated method stub
-		
-	}
+	
 
 	
 

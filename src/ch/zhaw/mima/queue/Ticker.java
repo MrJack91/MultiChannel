@@ -1,6 +1,7 @@
-package ch.zhaw.mima;
+package ch.zhaw.mima.queue;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class Ticker extends Thread {
@@ -30,7 +31,7 @@ public class Ticker extends Thread {
 	}
 
 	private void tick() {
-		// System.out.println("tick");
+		System.out.println("tick: " + new Date().toString());
 		for (Tickable tickable : tickables)
 			tickable.onTick();
 	}
