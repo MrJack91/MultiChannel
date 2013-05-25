@@ -16,16 +16,21 @@ import javax.swing.JTextArea;
 public class AbstractMessagingModule {
 
 	/**
-	 * content the frame in it self
-	 */
+   * content the frame in it self
+   * @uml.property  name="mainFrame"
+   * @uml.associationEnd  
+   */
   protected JFrame mainFrame;
 	/**
-	 * the full editor is in this panel
-	 */
+   * the full editor is in this panel
+   * @uml.property  name="paEditor"
+   * @uml.associationEnd  
+   */
   protected JPanel paEditor;
   
   /**
    * the title of this message frame
+   * @uml.property  name="frameTitle"
    */
   protected String frameTitle;
 	

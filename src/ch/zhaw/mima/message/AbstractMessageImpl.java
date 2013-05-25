@@ -15,8 +15,18 @@ import ch.zhaw.mima.addresses.Address;
  */
 public abstract class AbstractMessageImpl<T extends Address> implements Message<T> {
 
+	/**
+   * @uml.property  name="text"
+   */
 	private String text;
+	/**
+   * @uml.property  name="addresses"
+   * @uml.associationEnd  multiplicity="(0 -1)" elementType="ch.zhaw.mima.addresses.Address"
+   */
 	private List<T> addresses;
+	/**
+   * @uml.property  name="sendTime"
+   */
 	private int sendTime;
 
 	@Override
@@ -29,6 +39,10 @@ public abstract class AbstractMessageImpl<T extends Address> implements Message<
 		addresses = new ArrayList<T>();
 	}
 
+	/**
+   * @return
+   * @uml.property  name="text"
+   */
 	public String getText() {
 		return text;
 	}
@@ -43,6 +57,10 @@ public abstract class AbstractMessageImpl<T extends Address> implements Message<
 		return sendTime;
 	}
 
+	/**
+   * @param text
+   * @uml.property  name="text"
+   */
 	@Override
 	public void setText(String text) {
 		this.text = text;
@@ -55,6 +73,10 @@ public abstract class AbstractMessageImpl<T extends Address> implements Message<
 
 	}
 
+	/**
+   * @param sendTime
+   * @uml.property  name="sendTime"
+   */
 	@Override
 	public void setSendTime(int sendTime) {
 		this.sendTime = sendTime;

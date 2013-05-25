@@ -6,8 +6,20 @@ import ch.zhaw.mima.addresses.PrinterAddress;
 
 public class ValidatorService {
 
+	/**
+   * @uml.property  name="emailValidator"
+   * @uml.associationEnd  
+   */
 	private EmailAddressValidator emailValidator;
+	/**
+   * @uml.property  name="printerValidator"
+   * @uml.associationEnd  
+   */
 	private PrinterAddressValidator printerValidator;
+	/**
+   * @uml.property  name="phoneValidator"
+   * @uml.associationEnd  
+   */
 	private PhoneAddressValidator phoneValidator;
 
 

@@ -12,12 +12,28 @@ import ch.zhaw.mima.validator.ValidatorService;
 
 public class MessagingService implements Tickable{
 
+	/**
+   * @uml.property  name="emailQueue"
+   * @uml.associationEnd  multiplicity="(1 1)"
+   */
 	private MessageQueue<EmailAddress> emailQueue;
 
+	/**
+   * @uml.property  name="phoneQueue"
+   * @uml.associationEnd  multiplicity="(1 1)"
+   */
 	private MessageQueue<PhoneAddress> phoneQueue;
 
+	/**
+   * @uml.property  name="printerQueue"
+   * @uml.associationEnd  multiplicity="(1 1)"
+   */
 	private MessageQueue<PrinterAddress> printerQueue;
 
+	/**
+   * @uml.property  name="validatorService"
+   * @uml.associationEnd  multiplicity="(1 1)"
+   */
 	private ValidatorService validatorService;
 
 	public MessagingService() {

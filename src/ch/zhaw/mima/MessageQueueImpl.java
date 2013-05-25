@@ -9,6 +9,10 @@ import ch.zhaw.mima.message.Sendable;
 
 public class MessageQueueImpl<T extends Address> implements MessageQueue<T> {
 
+	/**
+   * @uml.property  name="sendables"
+   * @uml.associationEnd  multiplicity="(0 -1)" elementType="ch.zhaw.mima.message.Sendable"
+   */
 	private List<Sendable<T>> sendables;
 
 	public MessageQueueImpl() {

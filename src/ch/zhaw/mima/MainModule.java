@@ -26,9 +26,25 @@ public class MainModule extends BaseModule implements ActionListener {
 	 * 
 	 */
 	private static final long serialVersionUID = 499999116029107784L;
+	/**
+   * @uml.property  name="buSms"
+   * @uml.associationEnd  
+   */
 	private JButton buSms;
+	/**
+   * @uml.property  name="buMail"
+   * @uml.associationEnd  
+   */
 	private JButton buMail;
+	/**
+   * @uml.property  name="buPrint"
+   * @uml.associationEnd  
+   */
 	private JButton buPrint;
+	/**
+   * @uml.property  name="buMms"
+   * @uml.associationEnd  
+   */
 	private JButton buMms;
 
 	public void start() {
