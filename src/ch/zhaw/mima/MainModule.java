@@ -28,7 +28,7 @@ import ch.zhaw.mima.validator.AddressValidatorException;
 
 public class MainModule extends BaseModule implements ActionListener {
 
-	public MainModule(App app) throws HeadlessException {
+	public MainModule(App app) {
 		super(app);
 		
 	}
