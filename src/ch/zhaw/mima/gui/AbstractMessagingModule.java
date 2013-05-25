@@ -4,76 +4,86 @@
 package ch.zhaw.mima.gui;
 
 import javax.swing.BoxLayout;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
-import sun.security.krb5.internal.PAEncTSEnc;
-
 /**
  * @author michael
  *
  */
-public class ModuleSms {
+public class AbstractMessagingModule {
 
 	/**
 	 * content the frame in it self
 	 */
-	protected JFrame mainFrame;
+  protected JFrame mainFrame;
 	/**
 	 * the full editor is in this panel
 	 */
-	protected JPanel paEditor;
+  protected JPanel paEditor;
+  
+  /**
+   * the title of this message frame
+   */
+  protected String frameTitle;
 	
+
 	/**
-	 * construct
+	 * 
 	 */
-	public ModuleSms() {
-		this.init("SMS versenden");
-		
+	public AbstractMessagingModule() {
+		super();
 	}
-	
+
+	public void start() {
+		this.init();
+		this.createHeader();
+		this.createBody();
+		this.createFooter();
+		this.showFrame();
+	}
+
 	/**
 	 * Initialize a message frame
 	 * @param framename name of new frame
 	 */
-	protected void init(String framename) {
-		mainFrame = new JFrame(framename);
-		// mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // sonst schliesst das ganze Programm
-		
-		// content for all elements
-		paEditor = new JPanel();
-		paEditor.setLayout(new BoxLayout(paEditor, BoxLayout.Y_AXIS));
-	}
-	
+  protected void init() {
+  	mainFrame = new JFrame(this.frameTitle);
+  	// mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // sonst schliesst das ganze Programm
+  	
+  	// content for all elements
+  	paEditor = new JPanel();
+  	paEditor.setLayout(new BoxLayout(paEditor, BoxLayout.Y_AXIS));
+  }
+
 	/**
 	 * write the header to the gui
 	 * default is the recipients input as textarea
 	 */
-	protected void createHeader() {
-		// Recipient
-		this.createRecipientInput();
-	}
-	
+  protected void createHeader() {
+  	// Recipient
+  	this.createRecipientInput();
+  }
+
 	/**
 	 * write the body to the gui
 	 * default is the message textarea
 	 */
-	protected void createBody() {
-		// text
-		this.createMessageInput();
-	}
-	
+  protected void createBody() {
+  	// text
+  	this.createMessageInput();
+  }
+
 	/**
 	 * write the footer to the gui
 	 * no defaults at time
 	 */
-	protected void createFooter() {
-		
-	}
-	
+  protected void createFooter() {
+  	
+  }
+
 	protected void showFrame() {
 	// show frame
 			// mainFrame.getContentPane().add(BorderLayout.CENTER, mainPanel);
@@ -83,18 +93,17 @@ public class ModuleSms {
 			mainFrame.toFront();
 			mainFrame.setAlwaysOnTop(true);
 	}
-	
+
 	/**
 	 * write the recipient to the gui
 	 */
-	protected void createRecipientInput() {
-		JLabel lbRecipient = new JLabel("Empfänger");
-		JTextArea taRecipient = new JTextArea();
-		this.paEditor.add(lbRecipient);
-		this.paEditor.add(taRecipient);
-	}
-	
-	
+  protected void createRecipientInput() {
+  	JLabel lbRecipient = new JLabel("Empfänger");
+  	JTextArea taRecipient = new JTextArea();
+  	this.paEditor.add(lbRecipient);
+  	this.paEditor.add(taRecipient);
+  }
+
 	protected void createMessageInput() {
 		// set message input
 		JLabel lbText = new JLabel("Text");
@@ -103,5 +112,5 @@ public class ModuleSms {
 		this.paEditor.add(lbText);
 		this.paEditor.add(taText);
 	}
-	
+
 }

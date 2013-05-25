@@ -10,7 +10,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
-import ch.zhaw.mima.gui.ModuleSms;
+import ch.zhaw.mima.gui.AbstractMessagingModule;
+import ch.zhaw.mima.gui.SmsModule;
 
 public class App implements ActionListener {
 
@@ -68,12 +69,12 @@ public class App implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent arg0) {
-		System.out.println(arg0.getActionCommand());
+		AbstractMessagingModule messageModul = null;
 		
 		// set recipient
 		switch (arg0.getActionCommand()) {
 			case "sms":
-				ModuleSms sms = new ModuleSms();
+				messageModul = new SmsModule();
 				break;
 			case "mail":
 				
@@ -85,6 +86,10 @@ public class App implements ActionListener {
 				
 				break;
 		}
+		
+		messageModul.start();
+		
+		
 		/*
 		// set text from button to new frame
 		JFrame mainFrame = new JFrame(((JButton) arg0.getSource()).getText());
