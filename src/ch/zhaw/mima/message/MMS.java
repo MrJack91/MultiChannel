@@ -3,12 +3,12 @@
  */
 package ch.zhaw.mima.message;
 
-import ch.zhaw.mima.addresses.MMSAddress;
+import ch.zhaw.mima.addresses.PhoneAddress;
 
 /**
  * @author michael
  *
  */
-public interface MMS extends Message<MMSAddress> {
+public interface MMS extends Message<PhoneAddress> {
 
 }

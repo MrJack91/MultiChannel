@@ -12,9 +12,6 @@ import ch.zhaw.mima.validator.AddressValidatorException;
  */
 public interface Address {
 
-	void validate() throws AddressValidatorException;
-	
-	
 	
 	
 	

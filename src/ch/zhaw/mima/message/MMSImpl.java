@@ -3,13 +3,14 @@
  */
 package ch.zhaw.mima.message;
 
-import ch.zhaw.mima.addresses.MMSAddress;
+import ch.zhaw.mima.addresses.PhoneAddress;
+
 
 /**
  * @author michael
  *
  */
-public class MMSImpl extends AbstractMessageImpl<MMSAddress> implements MMS {
+public class MMSImpl extends AbstractMessageImpl<PhoneAddress> implements MMS {
 
 	@Override
 	public void send() {

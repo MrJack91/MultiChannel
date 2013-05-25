@@ -4,12 +4,15 @@ import java.util.Date;
 import java.util.List;
 
 import ch.zhaw.mima.addresses.Address;
+import ch.zhaw.mima.addresses.EmailAddress;
+import ch.zhaw.mima.addresses.PhoneAddress;
+import ch.zhaw.mima.addresses.PrinterAddress;
 import ch.zhaw.mima.message.Sendable;
 import ch.zhaw.mima.validator.AddressValidatorException;
 
-public class QueueImpl implements Queue {
+public class MessageQueueImpl<T extends Address> implements MessageQueue<T> {
 
-	private List<Sendable<? extends Address>> sendables;
+	private List<Sendable<T>> sendables;
 
 	@Override
 	public void processQueue() {
@@ -27,12 +30,12 @@ public class QueueImpl implements Queue {
 	}
 
 	@Override
-	public void addSendable(Sendable<? extends Address> sendable)
-			throws AddressValidatorException {
-		for (Address address : sendable.getAdresses())
-			address.validate();
+	public void addSendable(Sendable<T> sendable) {
 		sendables.add(sendable);
-
+		
+		
 	}
+
+	
 
 }
