@@ -12,14 +12,18 @@ public class App {
 	}
 
 	private MessagingService messagingService;
+	private Ticker ticker;
 
 	public App() {
-		
-		setMessagingService(new MessagingService());
+		ticker = new Ticker();
+
+		messagingService = new MessagingService();
+		ticker.addTickable(messagingService);
 
 	}
 
 	public void start() {
+		ticker.start();
 		MainModule mainModule = new MainModule(this);
 		mainModule.start();
 	}
@@ -28,9 +32,6 @@ public class App {
 		return messagingService;
 	}
 
-	public void setMessagingService(MessagingService messagingService) {
-		this.messagingService = messagingService;
-	}
 	
 	
 

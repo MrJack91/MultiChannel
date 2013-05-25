@@ -1,5 +1,6 @@
 package ch.zhaw.mima;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -10,8 +11,12 @@ public class MessageQueueImpl<T extends Address> implements MessageQueue<T> {
 
 	private List<Sendable<T>> sendables;
 
+	public MessageQueueImpl() {
+		sendables = new ArrayList<Sendable<T>>();
+	}
+
 	@Override
-	public void processQueue() {
+	public synchronized void processQueue() {
 
 		for (Sendable<? extends Address> oneSendable : sendables) {
 			if (oneSendable.getSendTime() <= getNow()) {
@@ -26,12 +31,9 @@ public class MessageQueueImpl<T extends Address> implements MessageQueue<T> {
 	}
 
 	@Override
-	public void addSendable(Sendable<T> sendable) {
+	public synchronized void addSendable(Sendable<T> sendable) {
 		sendables.add(sendable);
-		
-		
-	}
 
-	
+	}
 
 }
