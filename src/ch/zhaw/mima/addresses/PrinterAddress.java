@@ -1,5 +1,6 @@
 package ch.zhaw.mima.addresses;
 
+
 public class PrinterAddress implements Address{
 	
 	
@@ -22,5 +23,6 @@ public class PrinterAddress implements Address{
 	public void setPrinterIP(String printerIP) {
 		this.printerIP = printerIP;
 	}
+
 
 }

@@ -1,5 +1,7 @@
 package ch.zhaw.mima.addresses;
 
+
+
 public class PhoneAddress implements Address{
 
 	protected String number;
@@ -18,5 +20,9 @@ public class PhoneAddress implements Address{
 	public String toString() {
 		return "PhoneAddress [number=" + number + "]";
 	}
+
+	
+
+	
 
 }

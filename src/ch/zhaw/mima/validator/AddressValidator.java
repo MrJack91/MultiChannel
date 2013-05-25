@@ -12,7 +12,7 @@ import ch.zhaw.mima.addresses.Address;
 public interface AddressValidator<T extends Address>  {
 	
 
-	public void validate(T address) throws ValidationException;
+	public void validate(T address) throws AddressValidatorException;
 	
 
 }

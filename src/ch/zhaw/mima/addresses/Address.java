@@ -1,4 +1,7 @@
 package ch.zhaw.mima.addresses;
+
+import ch.zhaw.mima.validator.AddressValidatorException;
+
 /**
  * 
  */
@@ -8,8 +11,7 @@ package ch.zhaw.mima.addresses;
  *
  */
 public interface Address {
-	
-	
+
 	
 	
 	
