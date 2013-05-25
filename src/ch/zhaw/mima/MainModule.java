@@ -19,11 +19,11 @@ import ch.zhaw.mima.gui.MmsModule;
 import ch.zhaw.mima.gui.PrintModule;
 import ch.zhaw.mima.gui.SmsModule;
 import ch.zhaw.mima.message.Email;
-import ch.zhaw.mima.message.EmailImpl;
+import ch.zhaw.mima.message.Email;
 import ch.zhaw.mima.message.PrinterJob;
-import ch.zhaw.mima.message.PrinterJobImpl;
+import ch.zhaw.mima.message.PrinterJob;
 import ch.zhaw.mima.message.SMS;
-import ch.zhaw.mima.message.SMSImpl;
+import ch.zhaw.mima.message.SMS;
 import ch.zhaw.mima.validator.AddressValidatorException;
 
 public class MainModule extends BaseModule implements ActionListener {
@@ -143,7 +143,7 @@ public class MainModule extends BaseModule implements ActionListener {
 	
 
 	private void test() {
-		Email mail = new EmailImpl();
+		Email mail = new Email();
 		mail.setText("hello world");
 		mail.addAddress(new EmailAddress("macrozone@gmail.com"));
 		mail.setSendTime(new Date().getTime()+5000l);
@@ -154,7 +154,7 @@ public class MainModule extends BaseModule implements ActionListener {
 			e.printStackTrace();
 		}
 		
-		SMS sms = new SMSImpl();
+		SMS sms = new SMS();
 		sms.setText("bla lol rofl lg marco");
 		sms.addAddress(new PhoneAddress("07881876726"));
 		try {
@@ -164,7 +164,7 @@ public class MainModule extends BaseModule implements ActionListener {
 			e.printStackTrace();
 		}
 		
-		PrinterJob print = new PrinterJobImpl();
+		PrinterJob print = new PrinterJob();
 		print.setText("bla lol rofl lg marco");
 		print.setSendTime(new Date().getTime()+7000l);
 		print.addAddress(new PrinterAddress("192.168.1.100"));

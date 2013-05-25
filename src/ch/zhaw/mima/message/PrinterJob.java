@@ -9,6 +9,12 @@ import ch.zhaw.mima.addresses.PrinterAddress;
  * @author michael
  *
  */
-public interface PrinterJob extends Message<PrinterAddress> {
+public class PrinterJob extends AbstractMessageImpl<PrinterAddress>  
+{
+
+	
+
+	
+
 
 }

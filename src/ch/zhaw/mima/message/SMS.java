@@ -9,6 +9,10 @@ import ch.zhaw.mima.addresses.PhoneAddress;
  * @author michael
  *
  */
-public interface SMS extends Message<PhoneAddress> {
+public class SMS extends AbstractMessageImpl<PhoneAddress> implements Message<PhoneAddress> {
+
+
+	
+
 
 }
