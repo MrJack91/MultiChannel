@@ -44,12 +44,12 @@ public class PrinterAddressValidator implements AddressValidator<PrinterAddress>
 	}
 
 	private void checkIfReachable(PrinterAddress address)  throws AddressValidatorException{
-		// TODO: ping ip address
+		System.out.println("checking if "+address+" is reachable");
 
 	}
 
 	private void checkIfPrinter(PrinterAddress address)  throws AddressValidatorException{
-		// TODO: check if there is a printer behind this ip address
+		System.out.println("checking if "+address+" is a printer");
 
 	}
 

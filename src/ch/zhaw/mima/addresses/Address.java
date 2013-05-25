@@ -1,6 +1,5 @@
 package ch.zhaw.mima.addresses;
 
-import ch.zhaw.mima.validator.AddressValidatorException;
 
 /**
  * 

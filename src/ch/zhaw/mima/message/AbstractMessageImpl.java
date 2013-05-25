@@ -1,6 +1,7 @@
 package ch.zhaw.mima.message;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import ch.zhaw.mima.addresses.Address;
@@ -13,36 +14,28 @@ import ch.zhaw.mima.addresses.Address;
  * @author michael
  * 
  */
-public abstract class AbstractMessageImpl<T extends Address> implements Message<T> {
+public abstract class AbstractMessageImpl<T extends Address> implements
+		Message<T> {
 
-	/**
-   * @uml.property  name="text"
-   */
 	private String text;
-	/**
-   * @uml.property  name="addresses"
-   * @uml.associationEnd  multiplicity="(0 -1)" elementType="ch.zhaw.mima.addresses.Address"
-   */
 	private List<T> addresses;
-	/**
-   * @uml.property  name="sendTime"
-   */
-	private int sendTime;
+	private long sendTime;
 
 	@Override
 	public String toString() {
 		return "Message [text=" + text + ", addresses=" + addresses
-				+ ", sendTime=" + sendTime + "]";
+				+ ", sendTime=" + printTime() + "]";
+	}
+
+	private String printTime() {
+
+		return new Date(sendTime).toString();
 	}
 
 	public AbstractMessageImpl() {
 		addresses = new ArrayList<T>();
 	}
 
-	/**
-   * @return
-   * @uml.property  name="text"
-   */
 	public String getText() {
 		return text;
 	}
@@ -57,10 +50,6 @@ public abstract class AbstractMessageImpl<T extends Address> implements Message<
 		return sendTime;
 	}
 
-	/**
-   * @param text
-   * @uml.property  name="text"
-   */
 	@Override
 	public void setText(String text) {
 		this.text = text;
@@ -73,15 +62,9 @@ public abstract class AbstractMessageImpl<T extends Address> implements Message<
 
 	}
 
-	/**
-   * @param sendTime
-   * @uml.property  name="sendTime"
-   */
 	@Override
-	public void setSendTime(int sendTime) {
+	public void setSendTime(long sendTime) {
 		this.sendTime = sendTime;
 	}
-	
-	
 
 }

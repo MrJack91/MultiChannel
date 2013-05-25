@@ -23,7 +23,7 @@ public class EmailAddressValidator implements AddressValidator<EmailAddress> {
 	public void validate(EmailAddress address) throws AddressValidatorException {
 
 		try {
-			new InternetAddress(address.getEmail());
+			new InternetAddress(address.getEmail()).validate();
 		} catch (AddressException e) {
 			throw new AddressValidatorException(e.getMessage());
 		}

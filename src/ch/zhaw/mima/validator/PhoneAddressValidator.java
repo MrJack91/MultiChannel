@@ -8,6 +8,8 @@ public class PhoneAddressValidator implements AddressValidator<PhoneAddress> {
 	public void validate(PhoneAddress address) throws AddressValidatorException {
 		
 		
+		if(address.getNumber().isEmpty())
+			throw new AddressValidatorException("phone address is empty");
 		
 
 	}

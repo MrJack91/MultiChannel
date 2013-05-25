@@ -11,11 +11,6 @@ import ch.zhaw.mima.addresses.PhoneAddress;
  */
 public class SMSImpl extends AbstractMessageImpl<PhoneAddress> implements SMS {
 
-	@Override
-	public void send() {
-		// TODO Auto-generated method stub
-		
-	}
 
 	
 

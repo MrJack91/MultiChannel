@@ -1,4 +1,4 @@
-package ch.zhaw.mima;
+package ch.zhaw.mima.queue;
 
 public interface Tickable {
 	

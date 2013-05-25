@@ -1,5 +1,7 @@
 package ch.zhaw.mima;
 
+import ch.zhaw.mima.queue.Ticker;
+
 public class App {
 
 	/**
@@ -24,11 +26,15 @@ public class App {
 
 	public App() {
 		ticker = new Ticker();
+	
 
 		messagingService = new MessagingService();
+		
+		
 		ticker.addTickable(messagingService);
 
 	}
+
 
 	public void start() {
 		ticker.start();
