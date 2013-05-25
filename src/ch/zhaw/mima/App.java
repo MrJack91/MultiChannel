@@ -1,5 +1,6 @@
 package ch.zhaw.mima;
 
+import ch.zhaw.mima.gui.MainModule;
 import ch.zhaw.mima.queue.Ticker;
 
 public class App {

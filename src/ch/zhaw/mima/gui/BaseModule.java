@@ -1,9 +1,11 @@
-package ch.zhaw.mima;
+package ch.zhaw.mima.gui;
 
 import java.awt.GraphicsConfiguration;
 import java.awt.HeadlessException;
 
 import javax.swing.JFrame;
+
+import ch.zhaw.mima.App;
 
 public abstract class BaseModule extends JFrame {
 

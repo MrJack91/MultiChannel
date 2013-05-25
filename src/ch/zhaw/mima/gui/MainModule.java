@@ -1,4 +1,4 @@
-package ch.zhaw.mima;
+package ch.zhaw.mima.gui;
 
 import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
@@ -10,14 +10,10 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import ch.zhaw.mima.App;
 import ch.zhaw.mima.addresses.EmailAddress;
 import ch.zhaw.mima.addresses.PhoneAddress;
 import ch.zhaw.mima.addresses.PrinterAddress;
-import ch.zhaw.mima.gui.AbstractMessagingModule;
-import ch.zhaw.mima.gui.MailModule;
-import ch.zhaw.mima.gui.MmsModule;
-import ch.zhaw.mima.gui.PrintModule;
-import ch.zhaw.mima.gui.SmsModule;
 import ch.zhaw.mima.message.Email;
 import ch.zhaw.mima.message.Email;
 import ch.zhaw.mima.message.PrinterJob;
