@@ -14,6 +14,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+import ch.zhaw.mima.gui.ModuleSms;
+
 public class App implements ActionListener {
 
 	/**
@@ -37,19 +39,19 @@ public class App implements ActionListener {
 		JButton buSms = new JButton("SMS versenden");
 		JButton buMail = new JButton("Email versenden");
 		JButton buPrint = new JButton("Print versenden");
-		JButton buLetter = new JButton("Brief versenden");
+		JButton buMms = new JButton("Brief versenden");
 		
 		// set commands
 		buSms.setActionCommand("sms");
 		buMail.setActionCommand("mail");
 		buPrint.setActionCommand("print");
-		buLetter.setActionCommand("letter");
+		buMms.setActionCommand("mms");
 		
 		// set listener
 		buSms.addActionListener(this);
 		buMail.addActionListener(this);
 		buPrint.addActionListener(this);
-		buLetter.addActionListener(this);
+		buMms.addActionListener(this);
 		
 		// Add buttons to panel
 		JPanel panelMsgType = new JPanel();
@@ -57,7 +59,7 @@ public class App implements ActionListener {
 		panelMsgType.add(buSms);
 		panelMsgType.add(buMail);
 		panelMsgType.add(buPrint);
-		panelMsgType.add(buLetter);
+		panelMsgType.add(buMms);
 		
 		// add panel to main frame
 		// mainPanel.add(panelMsgType);
@@ -70,6 +72,24 @@ public class App implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent arg0) {
+		System.out.println(arg0.getActionCommand());
+		
+		// set recipient
+		switch (arg0.getActionCommand()) {
+			case "sms":
+				ModuleSms sms = new ModuleSms();
+				break;
+			case "mail":
+				
+				break;
+			case "mms":
+				
+				break;
+			case "print":
+				
+				break;
+		}
+		/*
 		// set text from button to new frame
 		JFrame mainFrame = new JFrame(((JButton) arg0.getSource()).getText());
 		// mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -116,5 +136,6 @@ public class App implements ActionListener {
 		mainFrame.setVisible(true);
 		mainFrame.toFront();
 		mainFrame.setAlwaysOnTop(true);
+		*/
 	}
 }
