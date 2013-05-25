@@ -84,8 +84,6 @@ public class MainModule extends BaseModule implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent arg0) {
-		System.out.println(arg0.getActionCommand());
-		
 		AbstractMessagingModule messageObject = null;
 		// set recipient
 		switch (arg0.getActionCommand()) {
