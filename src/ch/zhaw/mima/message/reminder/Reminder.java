@@ -1,4 +1,6 @@
-package ch.zhaw.mima.message;
+package ch.zhaw.mima.message.reminder;
+
+import ch.zhaw.mima.message.Message;
 
 /**
  * 
@@ -9,7 +11,7 @@ package ch.zhaw.mima.message;
  * @param <T>
  *
  */
-public interface Reminder<T extends Message<?>>{
+public interface Reminder<T extends Message<?>> {
 	
 	public T getOriginalMessage();
 	

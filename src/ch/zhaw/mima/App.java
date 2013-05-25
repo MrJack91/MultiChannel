@@ -15,27 +15,24 @@ public class App {
 	}
 
 	/**
-   * @uml.property  name="messagingService"
-   * @uml.associationEnd  multiplicity="(1 1)"
-   */
+	 * @uml.property name="messagingService"
+	 * @uml.associationEnd multiplicity="(1 1)"
+	 */
 	private MessagingService messagingService;
 	/**
-   * @uml.property  name="ticker"
-   * @uml.associationEnd  multiplicity="(1 1)"
-   */
+	 * @uml.property name="ticker"
+	 * @uml.associationEnd multiplicity="(1 1)"
+	 */
 	private Ticker ticker;
 
 	public App() {
 		ticker = new Ticker();
-	
 
 		messagingService = new MessagingService();
-		
-		
+
 		ticker.addTickable(messagingService);
 
 	}
-
 
 	public void start() {
 		ticker.start();
@@ -44,14 +41,11 @@ public class App {
 	}
 
 	/**
-   * @return
-   * @uml.property  name="messagingService"
-   */
+	 * @return
+	 * @uml.property name="messagingService"
+	 */
 	public MessagingService getMessagingService() {
 		return messagingService;
 	}
-
-	
-	
 
 }

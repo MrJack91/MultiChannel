@@ -1,6 +1,5 @@
 package ch.zhaw.mima.gui;
 
-import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Date;
@@ -15,11 +14,10 @@ import ch.zhaw.mima.addresses.EmailAddress;
 import ch.zhaw.mima.addresses.PhoneAddress;
 import ch.zhaw.mima.addresses.PrinterAddress;
 import ch.zhaw.mima.message.Email;
-import ch.zhaw.mima.message.Email;
-import ch.zhaw.mima.message.PrinterJob;
-import ch.zhaw.mima.message.PrinterJob;
-import ch.zhaw.mima.message.SMS;
-import ch.zhaw.mima.message.SMS;
+import ch.zhaw.mima.message.EmailImpl;
+import ch.zhaw.mima.message.PrinterJobImpl;
+import ch.zhaw.mima.message.SMSImpl;
+import ch.zhaw.mima.message.reminder.EmailReminder;
 import ch.zhaw.mima.validator.AddressValidatorException;
 
 public class MainModule extends BaseModule implements ActionListener {
@@ -139,10 +137,10 @@ public class MainModule extends BaseModule implements ActionListener {
 	
 
 	private void test() {
-		Email mail = new Email();
+		EmailImpl mail = new EmailImpl();
 		mail.setText("hello world");
 		mail.addAddress(new EmailAddress("macrozone@gmail.com"));
-		mail.setSendTime(new Date().getTime()+5000l);
+		mail.setSendTime(new Date().getTime()+20000l);
 		try {
 			getApp().getMessagingService().addMessage(mail);
 		} catch (AddressValidatorException e) {
@@ -150,19 +148,33 @@ public class MainModule extends BaseModule implements ActionListener {
 			e.printStackTrace();
 		}
 		
-		SMS sms = new SMS();
-		sms.setText("bla lol rofl lg marco");
-		sms.addAddress(new PhoneAddress("07881876726"));
+		
+		EmailReminder mailReminder = new EmailReminder();
+		mailReminder.setText("my reminder text");
+		mailReminder.addAddress(new EmailAddress("macrozone2@gmail.com"));
+		mailReminder.setOriginalMessage(mail);
+		mailReminder.setSendTime(new Date().getTime()+5000l);
 		try {
-			getApp().getMessagingService().addMessage(sms);
+			getApp().getMessagingService().addMessage(mailReminder);
 		} catch (AddressValidatorException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		PrinterJob print = new PrinterJob();
+		SMSImpl sMSImpl = new SMSImpl();
+		sMSImpl.setText("bla lol rofl lg marco");
+		sMSImpl.addAddress(new PhoneAddress("07881876726"));
+		sMSImpl.setSendTime(new Date().getTime()+8000l);
+		try {
+			getApp().getMessagingService().addMessage(sMSImpl);
+		} catch (AddressValidatorException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		PrinterJobImpl print = new PrinterJobImpl();
 		print.setText("bla lol rofl lg marco");
-		print.setSendTime(new Date().getTime()+7000l);
+		print.setSendTime(new Date().getTime()+15000l);
 		print.addAddress(new PrinterAddress("192.168.1.100"));
 		try {
 			getApp().getMessagingService().addMessage(print);

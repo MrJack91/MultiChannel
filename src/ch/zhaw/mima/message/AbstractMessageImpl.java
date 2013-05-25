@@ -23,14 +23,11 @@ public abstract class AbstractMessageImpl<T extends Address> implements
 
 	@Override
 	public String toString() {
-		return "Message [text=" + text + ", addresses=" + addresses
-				+ ", sendTime=" + printTime() + "]";
+		return "Message [text=" + getText() + ", addresses=" + getAdresses()
+				+ ", sendTime=" + getSendTimeFormatted() + "]";
 	}
 
-	private String printTime() {
-
-		return new Date(sendTime).toString();
-	}
+	
 
 	public AbstractMessageImpl() {
 		addresses = new ArrayList<T>();
@@ -48,6 +45,11 @@ public abstract class AbstractMessageImpl<T extends Address> implements
 	@Override
 	public long getSendTime() {
 		return sendTime;
+	}
+
+	@Override
+	public String getSendTimeFormatted() {
+		return new Date(sendTime).toString();
 	}
 
 	@Override

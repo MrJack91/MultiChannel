@@ -9,6 +9,8 @@ public interface Sendable<T extends Address> {
 	public long getSendTime();
 
 	public void setSendTime(long sendTime);
+	
+	public String getSendTimeFormatted();
 
 	public List<T> getAdresses();
 
