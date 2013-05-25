@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<editmodel:ClassDiagramEditModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editmodel="editmodel.xmi" xmlns:options="options.xmi" name="validator" size="839,492" id="ch.zhaw.mima.validator" metadata="uml2-1.0" initialized="true" tag="10" key="32303037303533312D3130204D756C74694368616E6E656C">
+  <children xsi:type="editmodel:ClassEditModel" name="AddressValidatorException" location="266,294" size="182,67" id="ch.zhaw.mima.validator/AddressValidatorException" runTimeClassModel="AddressValidatorException(Ljava.lang.String;)">
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="132,18">
+      <children xsi:type="editmodel:MethodEditModel" name="AddressValidatorException" id="ch.zhaw.mima.validator/AddressValidatorException#AddressValidatorException(Ljava.lang.String;)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="ValidatorService" location="650,50" size="160,157" id="ch.zhaw.mima.validator/ValidatorService" runTimeClassModel="getValidatorForAddressType(Lch.zhaw.mima.addresses.PhoneAddress;),getValidatorForAddressType(Lch.zhaw.mima.addresses.PrinterAddress;),validate(Lch.zhaw.mima.addresses.PrinterAddress;),validate(Lch.zhaw.mima.addresses.PhoneAddress;),validate(Lch.zhaw.mima.addresses.EmailAddress;),getValidatorForAddressType(Lch.zhaw.mima.addresses.EmailAddress;)">
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="137,108">
+      <children xsi:type="editmodel:MethodEditModel" name="getValidatorForAddressType" id="ch.zhaw.mima.validator/ValidatorService#getValidatorForAddressType(Lch.zhaw.mima.addresses.PhoneAddress;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getValidatorForAddressType" id="ch.zhaw.mima.validator/ValidatorService#getValidatorForAddressType(Lch.zhaw.mima.addresses.PrinterAddress;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getValidatorForAddressType" id="ch.zhaw.mima.validator/ValidatorService#getValidatorForAddressType(Lch.zhaw.mima.addresses.EmailAddress;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="validate" id="ch.zhaw.mima.validator/ValidatorService#validate(Lch.zhaw.mima.addresses.PhoneAddress;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="validate" id="ch.zhaw.mima.validator/ValidatorService#validate(Lch.zhaw.mima.addresses.PrinterAddress;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="validate" id="ch.zhaw.mima.validator/ValidatorService#validate(Lch.zhaw.mima.addresses.EmailAddress;)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="ValidatorFactory" location="50,294" size="166,103" id="ch.zhaw.mima.validator/ValidatorFactory" runTimeClassModel="createPrinterAddressValidator(),createEmailAddressValidator(),createPhoneValidator()">
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="143,54">
+      <children xsi:type="editmodel:MethodEditModel" name="createEmailAddressValidator" id="ch.zhaw.mima.validator/ValidatorFactory#createEmailAddressValidator()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="createPhoneValidator" id="ch.zhaw.mima.validator/ValidatorFactory#createPhoneValidator()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="createPrinterAddressValidator" id="ch.zhaw.mima.validator/ValidatorFactory#createPrinterAddressValidator()"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="EmailAddressValidator" location="50,177" size="160,67" id="ch.zhaw.mima.validator/EmailAddressValidator" runTimeClassModel="validate(Lch.zhaw.mima.addresses.EmailAddress;)">
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="57,18">
+      <children xsi:type="editmodel:MethodEditModel" name="validate" id="ch.zhaw.mima.validator/EmailAddressValidator#validate(Lch.zhaw.mima.addresses.EmailAddress;)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" targetConnections="//@children.5/@sourceConnections.0 //@children.4/@sourceConnections.0" autoLocated="true" id="ch.zhaw.mima.validator/AddressValidator&lt;-ch.zhaw.mima.validator/EmailAddressValidator" source="//@children.3" target="//@children.6" targetEnd="//@children.3/@sourceConnections.0/@children.1" sourceEnd="//@children.3/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="80,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="79,77" anchorKind="FixedAtEdge"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="PhoneAddressValidator" location="437,177" size="163,67" id="ch.zhaw.mima.validator/PhoneAddressValidator" runTimeClassModel="validate(Lch.zhaw.mima.addresses.PhoneAddress;)">
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="57,18">
+      <children xsi:type="editmodel:MethodEditModel" name="validate" id="ch.zhaw.mima.validator/PhoneAddressValidator#validate(Lch.zhaw.mima.addresses.PhoneAddress;)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="ch.zhaw.mima.validator/AddressValidator&lt;-ch.zhaw.mima.validator/PhoneAddressValidator" source="//@children.4" target="//@children.3/@sourceConnections.0" targetEnd="//@children.4/@sourceConnections.0/@children.1" sourceEnd="//@children.4/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="81,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="PrinterAddressValidator" location="240,177" size="167,67" id="ch.zhaw.mima.validator/PrinterAddressValidator" runTimeClassModel="validate(Lch.zhaw.mima.addresses.PrinterAddress;)">
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="57,18">
+      <children xsi:type="editmodel:MethodEditModel" name="validate" id="ch.zhaw.mima.validator/PrinterAddressValidator#validate(Lch.zhaw.mima.addresses.PrinterAddress;)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="ch.zhaw.mima.validator/AddressValidator&lt;-ch.zhaw.mima.validator/PrinterAddressValidator" source="//@children.5" target="//@children.3/@sourceConnections.0" targetEnd="//@children.5/@sourceConnections.0/@children.1" sourceEnd="//@children.5/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="83,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:InterfaceEditModel" targetConnections="//@children.3/@sourceConnections.0" name="AddressValidator" location="245,50" size="158,77" id="ch.zhaw.mima.validator/AddressValidator" runTimeClassModel="validate(LT;)">
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="57,18">
+      <children xsi:type="editmodel:MethodEditModel" name="validate" id="ch.zhaw.mima.validator/AddressValidator#validate(LT;)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <diagramOptions xsi:type="options:ClassDiagramOptions" interactive="false" level="-1" showScope="InPackage" properties="wireOptions=1;Product=eUML2"/>
+  <boardSetting snapToGeometry="true" gridEnabled="true" gridSpacing="15,15" gridOrigin="0,0" rulerUnit="pixel" gridVisibility="false">
+    <leftRuler/>
+    <topRuler/>
+  </boardSetting>
+  <classDiagramPreferences xsi:type="editmodel:UMLClassDiagramPreference" showPopupBars="true" showConnectionHandles="true" attributeSorter="Natural" methodSorter="Natural" showClassStereotype="true" showPackageStereotype="true" showDependencyStereotype="true" showInterfaceStereotype="true" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+</editmodel:ClassDiagramEditModel>
