@@ -10,7 +10,7 @@ import ch.zhaw.mima.message.SMS;
 import ch.zhaw.mima.validator.AddressValidatorException;
 import ch.zhaw.mima.validator.ValidatorService;
 
-public class MessagingService {
+public class MessagingService implements Tickable{
 
 	private MessageQueue<EmailAddress> emailQueue;
 
@@ -22,6 +22,9 @@ public class MessagingService {
 
 	public MessagingService() {
 		validatorService = new ValidatorService();
+		printerQueue = new MessageQueueImpl<PrinterAddress>();
+		phoneQueue = new MessageQueueImpl<PhoneAddress>();
+		emailQueue = new MessageQueueImpl<EmailAddress>();
 	}
 
 	public void addMessage(Email message) throws AddressValidatorException {
@@ -47,6 +50,14 @@ public class MessagingService {
 		for (PrinterAddress address : message.getAdresses())
 			validatorService.validate(address);
 		printerQueue.addSendable(message);
+	}
+
+	@Override
+	public void onTick() {
+		emailQueue.processQueue();
+		phoneQueue.processQueue();
+		printerQueue.processQueue();
+		
 	}
 
 }
