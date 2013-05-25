@@ -9,7 +9,11 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import ch.zhaw.mima.gui.ModuleSms;
+import ch.zhaw.mima.gui.AbstractMessagingModule;
+import ch.zhaw.mima.gui.MailModule;
+import ch.zhaw.mima.gui.MmsModule;
+import ch.zhaw.mima.gui.PrintModule;
+import ch.zhaw.mima.gui.SmsModule;
 
 public class MainModule extends BaseModule implements ActionListener {
 
@@ -76,55 +80,26 @@ public class MainModule extends BaseModule implements ActionListener {
 		buSms = new JButton("SMS versenden");
 		buMail = new JButton("Email versenden");
 		buPrint = new JButton("Print versenden");
-		buMms = new JButton("Brief versenden");
+		buMms = new JButton("MMS versenden");
 	}
 
 	public void actionPerformed(ActionEvent arg0) {
-		System.out.println(arg0.getActionCommand());
-
+		AbstractMessagingModule messageObject = null;
 		// set recipient
 		switch (arg0.getActionCommand()) {
 		case "sms":
-			ModuleSms sms = new ModuleSms();
+			messageObject = new SmsModule();
 			break;
 		case "mail":
-
+			messageObject = new MailModule();
 			break;
 		case "mms":
-
+			messageObject = new MmsModule();
 			break;
 		case "print":
-
+			messageObject = new PrintModule();
 			break;
 		}
-		/*
-		 * // set text from button to new frame JFrame mainFrame = new
-		 * JFrame(((JButton) arg0.getSource()).getText()); //
-		 * setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		 * 
-		 * // JPanel mainPanel = new JPanel(); // mainPanel.setLayout(new
-		 * BorderLayout());
-		 * 
-		 * // content for all elements JPanel paEditor = new JPanel();
-		 * paEditor.setLayout(new BoxLayout(paEditor, BoxLayout.Y_AXIS));
-		 * 
-		 * // set recipient switch (arg0.getActionCommand()) { case "sms": case
-		 * "mail": JLabel lbRecipient = new JLabel("Empfänger"); JTextArea
-		 * taRecipient = new JTextArea(); paEditor.add(lbRecipient);
-		 * paEditor.add(taRecipient); break; case "letter": JLabel lbAddress =
-		 * new JLabel("Adresse"); JTextArea taAddress = new JTextArea();
-		 * paEditor.add(lbAddress); paEditor.add(taAddress); break; }
-		 * 
-		 * // set message input JLabel lbText = new JLabel("Text"); JTextArea
-		 * taText = new JTextArea(); taText.setSize(30, 30);
-		 * paEditor.add(lbText); paEditor.add(taText);
-		 * 
-		 * 
-		 * // add panel to main frame // mainPanel.add(paEditor);
-		 * 
-		 * // show frame // getContentPane().add(BorderLayout.CENTER,
-		 * mainPanel); getContentPane().add(paEditor); setSize(500, 700);
-		 * setVisible(true); toFront(); setAlwaysOnTop(true);
-		 */
+		messageObject.start();
 	}
 }

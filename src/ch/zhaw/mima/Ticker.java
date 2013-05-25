@@ -30,7 +30,7 @@ public class Ticker extends Thread {
 	}
 
 	private void tick() {
-		System.out.println("tick");
+		// System.out.println("tick");
 		for (Tickable tickable : tickables)
 			tickable.onTick();
 	}
