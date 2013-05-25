@@ -53,7 +53,7 @@ public class MainModule extends BaseModule implements ActionListener {
 	private JButton buMms;
 
 	public void start() {
-		test();
+		// test();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		// JPanel mainPanel = new JPanel();
@@ -119,16 +119,16 @@ public class MainModule extends BaseModule implements ActionListener {
 		// set recipient
 		switch (arg0.getActionCommand()) {
 		case "sms":
-			messageObject = new SmsModule();
+			messageObject = new SmsModule(getApp());
 			break;
 		case "mail":
-			messageObject = new MailModule();
+			messageObject = new MailModule(getApp());
 			break;
 		case "mms":
-			messageObject = new MmsModule();
+			messageObject = new MmsModule(getApp());
 			break;
 		case "print":
-			messageObject = new PrintModule();
+			messageObject = new PrintModule(getApp());
 			break;
 		}
 		messageObject.start();

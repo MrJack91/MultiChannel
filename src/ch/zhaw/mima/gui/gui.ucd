@@ -3,7 +3,7 @@
   <children xsi:type="editmodel:ClassEditModel" name="PrintModule" location="448,185" size="105,67" id="ch.zhaw.mima.gui/PrintModule" runTimeClassModel="PrintModule()">
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
     <children xsi:type="editmodel:CompartmentEditModel" size="74,18">
-      <children xsi:type="editmodel:MethodEditModel" name="PrintModule" id="ch.zhaw.mima.gui/PrintModule#PrintModule()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="PrintModule" id="ch.zhaw.mima.gui/PrintModule#PrintModule(Lch.zhaw.mima.App;)"/>
     </children>
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
     <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="ch.zhaw.mima.gui/AbstractMessagingModule&lt;-ch.zhaw.mima.gui/PrintModule" source="//@children.0" target="//@children.3/@sourceConnections.0" targetEnd="//@children.0/@sourceConnections.0/@children.1" sourceEnd="//@children.0/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
@@ -24,7 +24,7 @@
   <children xsi:type="editmodel:ClassEditModel" name="MmsModule" location="313,185" size="105,67" id="ch.zhaw.mima.gui/MmsModule" runTimeClassModel="MmsModule()">
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
     <children xsi:type="editmodel:CompartmentEditModel" size="74,18">
-      <children xsi:type="editmodel:MethodEditModel" name="MmsModule" id="ch.zhaw.mima.gui/MmsModule#MmsModule()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="MmsModule" id="ch.zhaw.mima.gui/MmsModule#MmsModule(Lch.zhaw.mima.App;)"/>
     </children>
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
     <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="ch.zhaw.mima.gui/AbstractMessagingModule&lt;-ch.zhaw.mima.gui/MmsModule" source="//@children.2" target="//@children.3/@sourceConnections.0" targetEnd="//@children.2/@sourceConnections.0/@children.1" sourceEnd="//@children.2/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
@@ -36,7 +36,7 @@
   <children xsi:type="editmodel:ClassEditModel" name="SmsModule" location="50,185" size="101,67" id="ch.zhaw.mima.gui/SmsModule" runTimeClassModel="SmsModule()">
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
     <children xsi:type="editmodel:CompartmentEditModel" size="72,18">
-      <children xsi:type="editmodel:MethodEditModel" name="SmsModule" id="ch.zhaw.mima.gui/SmsModule#SmsModule()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="SmsModule" id="ch.zhaw.mima.gui/SmsModule#SmsModule(LApp;)"/>
     </children>
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
     <sourceConnections xsi:type="editmodel:GeneralizationEditModel" targetConnections="//@children.4/@sourceConnections.0 //@children.2/@sourceConnections.0 //@children.0/@sourceConnections.0" autoLocated="true" id="ch.zhaw.mima.gui/AbstractMessagingModule&lt;-ch.zhaw.mima.gui/SmsModule" source="//@children.3" target="//@children.1" targetEnd="//@children.3/@sourceConnections.0/@children.1" sourceEnd="//@children.3/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
@@ -48,7 +48,7 @@
   <children xsi:type="editmodel:ClassEditModel" name="MailModule" location="181,185" size="102,67" id="ch.zhaw.mima.gui/MailModule" runTimeClassModel="MailModule()">
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
     <children xsi:type="editmodel:CompartmentEditModel" size="72,18">
-      <children xsi:type="editmodel:MethodEditModel" name="MailModule" id="ch.zhaw.mima.gui/MailModule#MailModule()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="MailModule" id="ch.zhaw.mima.gui/MailModule#MailModule(LApp;)"/>
     </children>
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
     <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="ch.zhaw.mima.gui/AbstractMessagingModule&lt;-ch.zhaw.mima.gui/MailModule" source="//@children.4" target="//@children.3/@sourceConnections.0" targetEnd="//@children.4/@sourceConnections.0/@children.1" sourceEnd="//@children.4/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">

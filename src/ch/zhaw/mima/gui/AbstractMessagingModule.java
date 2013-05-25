@@ -4,37 +4,48 @@
 package ch.zhaw.mima.gui;
 
 import java.awt.Component;
-import java.awt.FlowLayout;
+import java.awt.HeadlessException;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.Locale;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
-import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JSpinner;
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
-import javax.swing.SpinnerDateModel;
-import javax.swing.SpinnerModel;
 import javax.swing.border.Border;
 
 import org.freixas.jcalendar.DateEvent;
 import org.freixas.jcalendar.DateListener;
-import org.freixas.jcalendar.JCalendar;
 import org.freixas.jcalendar.JCalendarCombo;
+
+import ch.zhaw.mima.App;
+import ch.zhaw.mima.addresses.Address;
+import ch.zhaw.mima.message.Message;
 
 /**
  * @author michael
  * 
  */
-public class AbstractMessagingModule {
+public abstract class AbstractMessagingModule<T extends Message<? extends Address>> extends BaseModule {
 
+	/**
+	 * @param app
+	 * @throws HeadlessException
+	 */
+  public AbstractMessagingModule(App app) throws HeadlessException {
+	  super(app);
+  }
+
+	/**
+	 * 
+	 */
+  private static final long serialVersionUID = 1833405701153538705L;
 	/**
 	 * content the frame in it self
 	 * 
@@ -57,12 +68,9 @@ public class AbstractMessagingModule {
 	 */
 	protected String frameTitle;
 
-	/**
-	 * 
-	 */
-	public AbstractMessagingModule() {
-		super();
-	}
+	private JTextArea taRecipient;
+	private JTextArea taText;
+	private JCalendarCombo calendar;
 
 	public void start() {
 		this.init();
@@ -128,7 +136,7 @@ public class AbstractMessagingModule {
 	protected void createRecipientInput() {
 		JLabel lbRecipient = new JLabel("Empfänger");
 		lbRecipient.setAlignmentX(Component.LEFT_ALIGNMENT);
-		JTextArea taRecipient = new JTextArea();
+		taRecipient = new JTextArea();
 		taRecipient.setAlignmentX(Component.LEFT_ALIGNMENT);
 		// make this scrollable
 		JScrollPane spRecipient = new JScrollPane(taRecipient,
@@ -143,7 +151,7 @@ public class AbstractMessagingModule {
 		// set message input
 		JLabel lbText = new JLabel("Text");
 		lbText.setAlignmentX(Component.LEFT_ALIGNMENT);
-		JTextArea taText = new JTextArea();
+		taText = new JTextArea();
 		taText.setAlignmentX(Component.LEFT_ALIGNMENT);
 		JScrollPane spText = new JScrollPane(taText,
 		    JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
@@ -162,32 +170,67 @@ public class AbstractMessagingModule {
 		Border emptyBorder = BorderFactory.createEmptyBorder(10, 10, 10, 10);
 		Border compoundBorder = BorderFactory.createCompoundBorder(etchedBorder,
 		    emptyBorder);
-		
-		/*
-		JCalendar calendar = new JCalendar(JCalendar.DISPLAY_DATE
-		    | JCalendar.DISPLAY_TIME, true);
-	 	*/
 
-		JCalendarCombo calendar = new JCalendarCombo(
+		calendar = new JCalendarCombo(
 		    Calendar.getInstance(Locale.GERMAN), Locale.GERMAN,
 		    JCalendarCombo.DISPLAY_DATE | JCalendarCombo.DISPLAY_TIME, true);
 		
 		calendar.setBorder(compoundBorder);
-		calendar.addDateListener(new MyDateListener());
+		//calendar.addDateListener(new MyDateListener());
 		
 		JButton buSend = new JButton("senden");
 		buSend.setAlignmentX(Component.LEFT_ALIGNMENT);
+		buSend.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				sendMessage();
+				
+			}
+		});
 
 		paEditor.add(lbTime);
 		paEditor.add(calendar);
 		paEditor.add(buSend);
 	}
 
+	/**
+	 * 
+	 */
+  protected void sendMessage() {
+  	T message = createMessage();
+  	message.setText(taText.getText());
+  	
+  	// calendar.getTime()
+  	
+  	addAddressesToMessage(taRecipient.getText(), message);
+
+  	putMessageInQueue(message);
+	}
+
+	/**
+	 * @param message
+	 */
+  protected abstract void addAddressesToMessage(String addressString, T message);
+
+	/**
+	 * @param message
+	 */
+  protected abstract void putMessageInQueue(T message);
+  
+
+	/**
+	 * 
+	 */
+  protected abstract T createMessage();
+	  
+  
+
 	// **********************************************************************
 	// Inner Classes
 	// **********************************************************************
 
-	private class MyDateListener implements DateListener {
+	 private class MyDateListener implements DateListener {
 
 		public void dateChanged(DateEvent e) {
 			Calendar c = e.getSelectedDate();
