@@ -7,6 +7,8 @@ import ch.zhaw.mima.App;
 import ch.zhaw.mima.addresses.EmailAddress;
 import ch.zhaw.mima.message.Email;
 import ch.zhaw.mima.message.EmailImpl;
+import ch.zhaw.mima.message.reminder.EmailReminder;
+import ch.zhaw.mima.message.reminder.Reminder;
 import ch.zhaw.mima.validator.AddressValidatorException;
 
 
@@ -45,14 +47,10 @@ public class MailModule extends AbstractMessagingModule<Email> {
 	 * @see ch.zhaw.mima.gui.AbstractMessagingModule#putMessageInQueue(ch.zhaw.mima.message.Message)
 	 */
   @Override
-  protected void putMessageInQueue(Email message) {
-  	try {
+  protected void putMessageInQueue(Email message) throws AddressValidatorException {
+ 
 	    getApp().getMessagingService().addMessage(message);
-	    // close window if send is success
-	    mainFrame.show(false);
-    } catch (AddressValidatorException e) {
-	    System.out.println("ungültige E-Mail Adresse");
-    }
+	
 	  
   }
 
@@ -68,5 +66,10 @@ public class MailModule extends AbstractMessagingModule<Email> {
   	}
     	
   }
+
+@Override
+protected Reminder<Email> createReminderMessage() {
+	return new EmailReminder();
+}
 	
 }

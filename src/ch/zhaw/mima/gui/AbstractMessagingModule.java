@@ -3,63 +3,69 @@
  */
 package ch.zhaw.mima.gui;
 
+import java.awt.BorderLayout;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Calendar;
 import java.util.Locale;
 
+import javax.swing.AbstractButton;
 import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
-import javax.swing.JFrame;
+import javax.swing.JCheckBox;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import javax.swing.border.Border;
 
-import org.freixas.jcalendar.DateEvent;
-import org.freixas.jcalendar.DateListener;
 import org.freixas.jcalendar.JCalendarCombo;
 
 import ch.zhaw.mima.App;
 import ch.zhaw.mima.addresses.Address;
 import ch.zhaw.mima.message.Message;
+import ch.zhaw.mima.message.reminder.Reminder;
+import ch.zhaw.mima.validator.AddressValidatorException;
 
 /**
  * @author michael
  * 
  */
-public abstract class AbstractMessagingModule<T extends Message<? extends Address>> extends BaseModule {
+public abstract class AbstractMessagingModule<T extends Message<? extends Address>>
+		extends BaseModule {
 
 	/**
 	 * @param app
 	 * @throws HeadlessException
 	 */
-  public AbstractMessagingModule(App app) throws HeadlessException {
-	  super(app);
-  }
+	public AbstractMessagingModule(App app) throws HeadlessException {
+		super(app);
+	}
 
 	/**
 	 * 
 	 */
-  private static final long serialVersionUID = 1833405701153538705L;
+	private static final long serialVersionUID = 1833405701153538705L;
 	/**
 	 * content the frame in it self
 	 * 
 	 * @uml.property name="mainFrame"
 	 * @uml.associationEnd
 	 */
-	protected JFrame mainFrame;
+
 	/**
 	 * the full editor is in this panel
 	 * 
 	 * @uml.property name="paEditor"
 	 * @uml.associationEnd
 	 */
-	protected JPanel paEditor;
+	protected JPanel messagePanel;
 
 	/**
 	 * the title of this message frame
@@ -68,34 +74,48 @@ public abstract class AbstractMessagingModule<T extends Message<? extends Addres
 	 */
 	protected String frameTitle;
 
+	protected JLabel lbRecipient;
 	private JTextArea taRecipient;
 	private JTextArea taText;
+	protected JTextField taReminderRecipient;
+
+	private JPanel reminderToggleContainer;
+	private JCheckBox chkRemind;
 	private JCalendarCombo calendar;
+	private JCalendarCombo reminderCalendar;
+
+	private JPanel sendPanel;
 
 	public void start() {
 		this.init();
-		this.createHeader();
-		this.createBody();
-		this.createFooter();
-		this.showFrame();
+		createHeader();
+
+		createMessagePanel();
+
+		createSendPanel();
+		showFrame();
 	}
 
 	/**
 	 * Initialize a message frame
 	 * 
 	 * @param framename
-	 *          name of new frame
+	 *            name of new frame
 	 */
 	protected void init() {
-		mainFrame = new JFrame(this.frameTitle);
-		// mainFrame.setLayout(new FlowLayout());
-		// mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // sonst
-		// schliesst das ganze Programm
 
-		// content for all elements
-		paEditor = new JPanel();
-		paEditor.setLayout(new BoxLayout(paEditor, BoxLayout.Y_AXIS));
+		setTitle(frameTitle);
+
 		// paEditor.setLayout(new FlowLayout());
+	}
+
+	private void createMessagePanel() {
+		messagePanel = new JPanel();
+		messagePanel.setLayout(new BorderLayout());
+		messagePanel.setBorder(BorderFactory.createTitledBorder("Nachricht"));
+
+		add(messagePanel, BorderLayout.CENTER);
+		createMessageInput();
 	}
 
 	/**
@@ -107,26 +127,68 @@ public abstract class AbstractMessagingModule<T extends Message<? extends Addres
 	}
 
 	/**
-	 * write the body to the gui default is the message textarea
+	 * 
 	 */
-	protected void createBody() {
-		// text
-		this.createMessageInput();
+	private void createReminderInput() {
+
+		JPanel reminderPanel = new JPanel();
+		reminderPanel.setLayout(new BorderLayout());
+		reminderPanel.setBorder(BorderFactory.createTitledBorder("Erinnerung"));
+
+		chkRemind = new JCheckBox("Erinnere mich");
+
+		chkRemind.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				boolean showReminderArea = ((AbstractButton) e.getSource())
+						.isSelected();
+				reminderToggleContainer.setVisible(showReminderArea);
+			}
+		});
+
+		// Toggle area (empfänger details)
+		reminderToggleContainer = new JPanel();
+		reminderToggleContainer.setVisible(false);
+
+		reminderToggleContainer.setLayout(new BorderLayout());
+
+		// empfänger für reminder
+		JLabel lbRecipient = new JLabel("Empfänger (Reminder)");
+		lbRecipient.setAlignmentX(Component.LEFT_ALIGNMENT);
+
+		taReminderRecipient = new JTextField();
+		taReminderRecipient.setAlignmentX(Component.LEFT_ALIGNMENT);
+		// make this scrollable
+
+		reminderToggleContainer.add(lbRecipient, BorderLayout.WEST);
+
+		reminderToggleContainer.add(taReminderRecipient, BorderLayout.CENTER);
+		setMaxHeight(reminderToggleContainer, 300);
+		// create date picker
+		JLabel lbTime = new JLabel("Zeit:");
+		lbTime.setAlignmentX(Component.LEFT_ALIGNMENT);
+
+		reminderCalendar = createCalendarComponent();
+		reminderToggleContainer.add(reminderCalendar, BorderLayout.SOUTH);
+
+		reminderPanel.add(chkRemind, BorderLayout.NORTH);
+		reminderPanel.add(reminderToggleContainer, BorderLayout.CENTER);
+		sendPanel.add(reminderPanel, BorderLayout.CENTER);
+
 	}
 
-	/**
-	 * write the footer to the gui no defaults at time
-	 */
-	protected void createFooter() {
-		this.createSendButton();
+	private void setMinWidth(JComponent component, int width) {
+		Dimension dimension = component.getPreferredSize();
+		dimension.width = width;
+		component.setMinimumSize(dimension);
+
 	}
 
 	protected void showFrame() {
 		// show frame
-		mainFrame.getContentPane().add(paEditor);
-		mainFrame.setSize(500, 700);
-		mainFrame.setVisible(true);
-		mainFrame.toFront();
+		setSize(500, 700);
+		setVisible(true);
+		toFront();
 		// mainFrame.setAlwaysOnTop(true);
 	}
 
@@ -134,117 +196,143 @@ public abstract class AbstractMessagingModule<T extends Message<? extends Addres
 	 * write the recipient to the gui
 	 */
 	protected void createRecipientInput() {
-		JLabel lbRecipient = new JLabel("Empfänger");
+		JPanel panel = new JPanel();
+		panel.setLayout(new BorderLayout());
+		lbRecipient = new JLabel("Empfänger");
 		lbRecipient.setAlignmentX(Component.LEFT_ALIGNMENT);
 		taRecipient = new JTextArea();
 		taRecipient.setAlignmentX(Component.LEFT_ALIGNMENT);
 		// make this scrollable
 		JScrollPane spRecipient = new JScrollPane(taRecipient,
-		    JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
-		    JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+				JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+				JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		spRecipient.setAlignmentX(Component.LEFT_ALIGNMENT);
-		this.paEditor.add(lbRecipient);
-		this.paEditor.add(spRecipient);
+		panel.add(lbRecipient, BorderLayout.WEST);
+		panel.add(spRecipient, BorderLayout.CENTER);
+
+		add(panel, BorderLayout.NORTH);
 	}
 
 	protected void createMessageInput() {
+		JPanel panel = new JPanel();
 		// set message input
-		JLabel lbText = new JLabel("Text");
-		lbText.setAlignmentX(Component.LEFT_ALIGNMENT);
+
 		taText = new JTextArea();
 		taText.setAlignmentX(Component.LEFT_ALIGNMENT);
 		JScrollPane spText = new JScrollPane(taText,
-		    JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
-		    JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+				JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+				JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		spText.setAlignmentX(Component.LEFT_ALIGNMENT);
-		this.paEditor.add(lbText);
-		this.paEditor.add(spText);
+
+		messagePanel.add(spText, BorderLayout.CENTER);
 	}
 
-	protected void createSendButton() {
+	protected void createSendPanel() {
+		sendPanel = new JPanel();
+		sendPanel.setLayout(new BorderLayout());
+		JPanel panel = new JPanel();
 		// set message input
 		JLabel lbTime = new JLabel("Zeit:");
 		lbTime.setAlignmentX(Component.LEFT_ALIGNMENT);
 
-		Border etchedBorder = BorderFactory.createEtchedBorder();
-		Border emptyBorder = BorderFactory.createEmptyBorder(10, 10, 10, 10);
-		Border compoundBorder = BorderFactory.createCompoundBorder(etchedBorder,
-		    emptyBorder);
+		calendar = createCalendarComponent();
 
-		calendar = new JCalendarCombo(
-		    Calendar.getInstance(Locale.GERMAN), Locale.GERMAN,
-		    JCalendarCombo.DISPLAY_DATE | JCalendarCombo.DISPLAY_TIME, true);
-		
-		calendar.setBorder(compoundBorder);
-		//calendar.addDateListener(new MyDateListener());
-		
 		JButton buSend = new JButton("senden");
 		buSend.setAlignmentX(Component.LEFT_ALIGNMENT);
 		buSend.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				sendMessage();
-				
 			}
 		});
 
-		paEditor.add(lbTime);
-		paEditor.add(calendar);
-		paEditor.add(buSend);
+		panel.add(lbTime);
+		panel.add(calendar);
+		sendPanel.add(panel, BorderLayout.CENTER);
+		sendPanel.add(buSend, BorderLayout.SOUTH);
+
+		createReminderInput();
+		add(sendPanel, BorderLayout.SOUTH);
+	}
+
+	private JCalendarCombo createCalendarComponent() {
+		JCalendarCombo calendar = new JCalendarCombo(
+				Calendar.getInstance(Locale.GERMAN), Locale.GERMAN,
+				JCalendarCombo.DISPLAY_DATE | JCalendarCombo.DISPLAY_TIME, true);
+		prepareCalendarComponent(calendar);
+		return calendar;
+	}
+
+	private void prepareCalendarComponent(JCalendarCombo calendar) {
+		Border etchedBorder = BorderFactory.createEtchedBorder();
+		Border emptyBorder = BorderFactory.createEmptyBorder(10, 10, 10, 10);
+		Border compoundBorder = BorderFactory.createCompoundBorder(
+				etchedBorder, emptyBorder);
+		calendar.setBorder(compoundBorder);
+		// calendar.addDateListener(new MyDateListener());
+		setMaxHeight(calendar, 100);
+	}
+
+	private void setMaxHeight(JComponent component, int height) {
+		Dimension dimension = component.getPreferredSize();
+		dimension.height = height;
+
+		component.setMaximumSize(new Dimension(dimension));
 	}
 
 	/**
 	 * 
 	 */
-  protected void sendMessage() {
-  	T message = createMessage();
-  	message.setText(taText.getText());
-  	
-  	// calendar.getTime()
-  	
-  	addAddressesToMessage(taRecipient.getText(), message);
+	protected void sendMessage() {
+		T message = createMessage();
+		message.setText(taText.getText());
+		message.setSendTime(calendar.getDate().getTime());
 
-  	putMessageInQueue(message);
-	}
+		try {
 
-	/**
-	 * @param message
-	 */
-  protected abstract void addAddressesToMessage(String addressString, T message);
+			addAddressesToMessage(taRecipient.getText(), message);
+			if (chkRemind.isSelected()) {
+				Reminder<T> messageRemind = createReminderMessage();
+				messageRemind.setOriginalMessage(message);
 
-	/**
-	 * @param message
-	 */
-  protected abstract void putMessageInQueue(T message);
-  
+				addAddressesToMessage(taReminderRecipient.getText(),
+						(T) messageRemind);
 
-	/**
-	 * 
-	 */
-  protected abstract T createMessage();
-	  
-  
+				putMessageInQueue((T) messageRemind);
 
-	// **********************************************************************
-	// Inner Classes
-	// **********************************************************************
-
-	 private class MyDateListener implements DateListener {
-
-		public void dateChanged(DateEvent e) {
-			Calendar c = e.getSelectedDate();
-			if (c != null) {
-				System.out.println(c.getTime());
-			} else {
-				System.out.println("No time selected.");
 			}
+
+			putMessageInQueue(message);
+		} catch (AddressValidatorException e) {
+			showRecipientError(e);
 		}
 
 	}
 
-	// **********************************************************************
-	// End Inner Classes
-	// **********************************************************************
+	private void showRecipientError(AddressValidatorException e) {
+		JOptionPane.showMessageDialog(this,
+				"Please check address:\n" + e.getMessage(), "error",
+				JOptionPane.ERROR_MESSAGE);
+	}
+
+	/**
+	 * @param message
+	 */
+	protected abstract void addAddressesToMessage(String addressString,
+			T message) throws AddressValidatorException;
+
+	/**
+	 * @param message
+	 */
+	protected abstract void putMessageInQueue(T message)
+			throws AddressValidatorException;
+
+	/**
+	 * 
+	 */
+	protected abstract T createMessage();
+	
+	protected abstract Reminder<T> createReminderMessage();
 
 }

@@ -1,7 +1,6 @@
 package ch.zhaw.mima.queue;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class Ticker extends Thread {

@@ -9,7 +9,7 @@ public class PhoneAddressValidator implements AddressValidator<PhoneAddress> {
 		
 		
 		if(address.getNumber().isEmpty())
-			throw new AddressValidatorException("phone address is empty");
+			throw new AddressValidatorException("Error in "+address.getNumber()+"\nphone address is empty");
 		
 
 	}

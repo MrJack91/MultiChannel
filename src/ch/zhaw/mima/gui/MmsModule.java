@@ -7,6 +7,8 @@ import ch.zhaw.mima.App;
 import ch.zhaw.mima.addresses.PhoneAddress;
 import ch.zhaw.mima.message.MMS;
 import ch.zhaw.mima.message.MMSImpl;
+import ch.zhaw.mima.message.reminder.MMSReminder;
+import ch.zhaw.mima.message.reminder.Reminder;
 import ch.zhaw.mima.validator.AddressValidatorException;
 
 
@@ -46,9 +48,9 @@ public class MmsModule extends AbstractMessagingModule<MMS> {
   protected void putMessageInQueue(MMS message) {
   	try {
 	    getApp().getMessagingService().addMessage(message);
+	    lbRecipient.setText("Empfänger");
     } catch (AddressValidatorException e) {
-	    // TODO Auto-generated catch block
-	    e.printStackTrace();
+    	lbRecipient.setText("Empfänger - " + e.getMessage());
     }
 	  
   }
@@ -60,5 +62,10 @@ public class MmsModule extends AbstractMessagingModule<MMS> {
   protected MMS createMessage() {
 	  return new MMSImpl();
   }
+
+@Override
+protected Reminder<MMS> createReminderMessage() {
+	return new MMSReminder();
+}
 	
 }

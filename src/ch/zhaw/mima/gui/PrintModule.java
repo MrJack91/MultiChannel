@@ -7,6 +7,8 @@ import ch.zhaw.mima.App;
 import ch.zhaw.mima.addresses.PrinterAddress;
 import ch.zhaw.mima.message.PrinterJob;
 import ch.zhaw.mima.message.PrinterJobImpl;
+import ch.zhaw.mima.message.reminder.PrintJobReminder;
+import ch.zhaw.mima.message.reminder.Reminder;
 import ch.zhaw.mima.validator.AddressValidatorException;
 
 
@@ -46,9 +48,9 @@ public class PrintModule extends AbstractMessagingModule<PrinterJob> {
   protected void putMessageInQueue(PrinterJob message) {
   	try {
 	    getApp().getMessagingService().addMessage(message);
+	    lbRecipient.setText("Empfänger");
     } catch (AddressValidatorException e) {
-	    // TODO Auto-generated catch block
-	    e.printStackTrace();
+    	lbRecipient.setText("Empfänger - " + e.getMessage());
     }
 	  
   }
@@ -60,6 +62,11 @@ public class PrintModule extends AbstractMessagingModule<PrinterJob> {
   protected PrinterJob createMessage() {
 	  return new PrinterJobImpl();
   }
+
+@Override
+protected Reminder<PrinterJob> createReminderMessage() {
+	return new PrintJobReminder();
+}
 
 	
 }

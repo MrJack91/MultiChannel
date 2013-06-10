@@ -17,5 +17,4 @@ public interface Reminder<T extends Message<?>> {
 	
 	public void setOriginalMessage(T message);
 	
-	
 }

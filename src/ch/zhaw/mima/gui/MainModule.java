@@ -13,7 +13,6 @@ import ch.zhaw.mima.App;
 import ch.zhaw.mima.addresses.EmailAddress;
 import ch.zhaw.mima.addresses.PhoneAddress;
 import ch.zhaw.mima.addresses.PrinterAddress;
-import ch.zhaw.mima.message.Email;
 import ch.zhaw.mima.message.EmailImpl;
 import ch.zhaw.mima.message.PrinterJobImpl;
 import ch.zhaw.mima.message.SMSImpl;

@@ -13,14 +13,4 @@ import ch.zhaw.mima.addresses.EmailAddress;
 public class EmailImpl extends AbstractMessageImpl<EmailAddress> implements
 		Email {
 
-
-
-	
-	
-	
-
-	
-
-	
-
 }
