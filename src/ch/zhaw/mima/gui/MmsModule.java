@@ -46,9 +46,9 @@ public class MmsModule extends AbstractMessagingModule<MMS> {
   protected void putMessageInQueue(MMS message) {
   	try {
 	    getApp().getMessagingService().addMessage(message);
+	    lbRecipient.setText("Empfänger");
     } catch (AddressValidatorException e) {
-	    // TODO Auto-generated catch block
-	    e.printStackTrace();
+    	lbRecipient.setText("Empfänger - " + e.getMessage());
     }
 	  
   }

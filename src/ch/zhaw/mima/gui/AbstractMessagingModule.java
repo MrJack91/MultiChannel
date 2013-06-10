@@ -68,6 +68,7 @@ public abstract class AbstractMessagingModule<T extends Message<? extends Addres
 	 */
 	protected String frameTitle;
 
+	protected JLabel lbRecipient;
 	private JTextArea taRecipient;
 	private JTextArea taText;
 	private JCalendarCombo calendar;
@@ -134,7 +135,7 @@ public abstract class AbstractMessagingModule<T extends Message<? extends Addres
 	 * write the recipient to the gui
 	 */
 	protected void createRecipientInput() {
-		JLabel lbRecipient = new JLabel("Empfänger");
+		lbRecipient = new JLabel("Empfänger");
 		lbRecipient.setAlignmentX(Component.LEFT_ALIGNMENT);
 		taRecipient = new JTextArea();
 		taRecipient.setAlignmentX(Component.LEFT_ALIGNMENT);
@@ -185,7 +186,6 @@ public abstract class AbstractMessagingModule<T extends Message<? extends Addres
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				sendMessage();
-				
 			}
 		});
 
@@ -200,8 +200,7 @@ public abstract class AbstractMessagingModule<T extends Message<? extends Addres
   protected void sendMessage() {
   	T message = createMessage();
   	message.setText(taText.getText());
-  	
-  	// calendar.getTime()
+  	message.setSendTime(calendar.getDate().getTime());
   	
   	addAddressesToMessage(taRecipient.getText(), message);
 

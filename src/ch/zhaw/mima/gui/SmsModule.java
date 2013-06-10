@@ -48,8 +48,9 @@ public class SmsModule extends AbstractMessagingModule<SMS> {
   protected void putMessageInQueue(SMS message) {
   	try {
 	    getApp().getMessagingService().addMessage(message);
+	    lbRecipient.setText("Empfänger");
     } catch (AddressValidatorException e) {
-    	System.out.println("ungültige Mobiletelefon Nummer");
+    	lbRecipient.setText("Empfänger - " + e.getMessage());
     }
   }
 

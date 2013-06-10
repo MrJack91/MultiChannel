@@ -49,9 +49,10 @@ public class MailModule extends AbstractMessagingModule<Email> {
   	try {
 	    getApp().getMessagingService().addMessage(message);
 	    // close window if send is success
-	    mainFrame.show(false);
+	    lbRecipient.setText("Empfänger");
+	    // mainFrame.show(false);
     } catch (AddressValidatorException e) {
-	    System.out.println("ungültige E-Mail Adresse");
+    	lbRecipient.setText("Empfänger - " + e.getMessage());
     }
 	  
   }
