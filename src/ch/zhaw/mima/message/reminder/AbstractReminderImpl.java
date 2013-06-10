@@ -17,7 +17,6 @@ public class AbstractReminderImpl<O extends Message<?>, A extends Address>
 	@Override
 	public void setOriginalMessage(O message) {
 		originalMessage = message;
-
 	}
 
 	@Override

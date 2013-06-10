@@ -3,12 +3,16 @@
  */
 package ch.zhaw.mima.gui;
 
+import java.util.Date;
+
 import ch.zhaw.mima.App;
 import ch.zhaw.mima.addresses.EmailAddress;
 import ch.zhaw.mima.addresses.PhoneAddress;
 import ch.zhaw.mima.message.EmailImpl;
 import ch.zhaw.mima.message.SMS;
 import ch.zhaw.mima.message.SMSImpl;
+import ch.zhaw.mima.message.reminder.EmailReminder;
+import ch.zhaw.mima.message.reminder.SMSReminder;
 import ch.zhaw.mima.validator.AddressValidatorException;
 
 
@@ -60,6 +64,22 @@ public class SmsModule extends AbstractMessagingModule<SMS> {
   @Override
   protected SMS createMessage() {
   	return new SMSImpl();
+  }
+
+	/* (non-Javadoc)
+	 * @see ch.zhaw.mima.gui.AbstractMessagingModule#putRemindMessageInQueue(ch.zhaw.mima.message.Message, ch.zhaw.mima.message.Message)
+	 */
+  @Override
+  protected void putRemindMessageInQueue(SMS message, SMSReminder messageReminder) {
+  	messageReminder.setOriginalMessage(message);
+  	message.setSendTime(new Date().getTime()+5000l);
+  	try {
+  		getApp().getMessagingService().addMessage(messageReminder);
+  	} catch (AddressValidatorException e) {
+  		// TODO Auto-generated catch block
+  		e.printStackTrace();
+  	}
+	  
   }
 	
 }

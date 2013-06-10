@@ -7,12 +7,16 @@ import java.awt.Component;
 import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 
+import javax.swing.AbstractButton;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -26,7 +30,11 @@ import org.freixas.jcalendar.JCalendarCombo;
 
 import ch.zhaw.mima.App;
 import ch.zhaw.mima.addresses.Address;
+import ch.zhaw.mima.addresses.EmailAddress;
 import ch.zhaw.mima.message.Message;
+import ch.zhaw.mima.message.SMS;
+import ch.zhaw.mima.message.reminder.EmailReminder;
+import ch.zhaw.mima.validator.AddressValidatorException;
 
 /**
  * @author michael
@@ -71,7 +79,11 @@ public abstract class AbstractMessagingModule<T extends Message<? extends Addres
 	protected JLabel lbRecipient;
 	private JTextArea taRecipient;
 	private JTextArea taText;
+	protected JTextArea taReminderRecipient;
 	private JCalendarCombo calendar;
+	private JCalendarCombo calendarReminder;
+	private JPanel reminderToggleContainer;
+	private JCheckBox chkRemind;
 
 	public void start() {
 		this.init();
@@ -113,7 +125,67 @@ public abstract class AbstractMessagingModule<T extends Message<? extends Addres
 	protected void createBody() {
 		// text
 		this.createMessageInput();
+		// reminder
+		this.createReminderInput();
 	}
+
+	/**
+	 * 
+	 */
+  private void createReminderInput() {
+  	JPanel reminderContainer = new JPanel();
+  	chkRemind = new JCheckBox("Erinnere mich");
+  	
+  	chkRemind.addActionListener(new ActionListener() {
+			@Override
+      public void actionPerformed(ActionEvent e) {
+				boolean showReminderArea = ((AbstractButton) e.getSource()).isSelected();
+				reminderToggleContainer.setVisible(showReminderArea);
+      }
+  	});
+  	
+  	
+  	// Toggle area (empfänger details)
+  	reminderToggleContainer = new JPanel();
+  	reminderToggleContainer.setVisible(false);
+  	
+  	// empfänger für reminder
+  	JLabel lbRecipient = new JLabel("Empfänger");
+		lbRecipient.setAlignmentX(Component.LEFT_ALIGNMENT);
+		
+		taReminderRecipient = new JTextArea();
+		taReminderRecipient.setAlignmentX(Component.LEFT_ALIGNMENT);
+		// make this scrollable
+		JScrollPane spRecipient = new JScrollPane(
+				taReminderRecipient,
+		    JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+		    JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		spRecipient.setAlignmentX(Component.LEFT_ALIGNMENT);
+		reminderToggleContainer.add(lbRecipient);
+		reminderToggleContainer.add(spRecipient);
+  	
+		// create date picker
+		JLabel lbTime = new JLabel("Zeit:");
+		lbTime.setAlignmentX(Component.LEFT_ALIGNMENT);
+		
+		Border etchedBorder = BorderFactory.createEtchedBorder();
+		Border emptyBorder = BorderFactory.createEmptyBorder(10, 10, 10, 10);
+		Border compoundBorder = BorderFactory.createCompoundBorder(etchedBorder,
+		    emptyBorder);
+		calendarReminder = new JCalendarCombo(
+		    Calendar.getInstance(Locale.GERMAN), Locale.GERMAN,
+		    JCalendarCombo.DISPLAY_DATE | JCalendarCombo.DISPLAY_TIME, true);
+		calendar.setBorder(compoundBorder);
+		
+		reminderToggleContainer.add(calendarReminder);
+		
+  	// fill container
+  	reminderContainer.add(chkRemind);
+  	
+  	paEditor.add(reminderContainer);
+  	paEditor.add(reminderToggleContainer);
+	  
+  }
 
 	/**
 	 * write the footer to the gui no defaults at time
@@ -203,6 +275,17 @@ public abstract class AbstractMessagingModule<T extends Message<? extends Addres
   	message.setSendTime(calendar.getDate().getTime());
   	
   	addAddressesToMessage(taRecipient.getText(), message);
+  	
+  	if (chkRemind.isSelected()) {
+  		T messageRemind = createMessage();
+  		messageRemind.setText("Reminder:\n");
+  		// messageRemind.setSendTime(.getDate().getTime());
+    	addAddressesToMessage(taReminderRecipient.getText(), messageRemind);
+    	
+    	// mailReminder.addAddress(new EmailAddress("macrozone2@gmail.com"));
+    	putRemindMessageInQueue(messageRemind);
+    	
+  	}
 
   	putMessageInQueue(message);
 	}
@@ -216,6 +299,13 @@ public abstract class AbstractMessagingModule<T extends Message<? extends Addres
 	 * @param message
 	 */
   protected abstract void putMessageInQueue(T message);
+  
+  
+  /**
+	 * @param message
+	 * @param messageReminder
+	 */
+  protected abstract void putRemindMessageInQueue(T message, Reminder<T extends Message<?>>messageReminder);
   
 
 	/**
