@@ -180,13 +180,7 @@ public abstract class AbstractMessagingModule<T extends Message<? extends Addres
 
 	}
 
-	private void setMinWidth(JComponent component, int width) {
-		Dimension dimension = component.getPreferredSize();
-		dimension.width = width;
-		component.setMinimumSize(dimension);
 
-
-	}
 
 	protected void showFrame() {
 		// show frame
@@ -220,8 +214,7 @@ public abstract class AbstractMessagingModule<T extends Message<? extends Addres
 	}
 
 	protected void createMessageInput() {
-		JPanel panel = new JPanel();
-		// set message input
+	
 
 		taText = new JTextArea();
 		taText.setAlignmentX(Component.LEFT_ALIGNMENT);
@@ -237,8 +230,9 @@ public abstract class AbstractMessagingModule<T extends Message<? extends Addres
 		sendPanel = new JPanel();
 		sendPanel.setLayout(new BorderLayout());
 		JPanel panel = new JPanel();
+		panel.setLayout(new BorderLayout());
 		// set message input
-		JLabel lbTime = new JLabel("Zeit:");
+		JLabel lbTime = new JLabel("Sendezeit: ");
 		lbTime.setAlignmentX(Component.LEFT_ALIGNMENT);
 
 		calendar = createCalendarComponent();
@@ -253,10 +247,10 @@ public abstract class AbstractMessagingModule<T extends Message<? extends Addres
 			}
 		});
 
-		panel.add(lbTime);
-		panel.add(calendar);
-		sendPanel.add(panel, BorderLayout.CENTER);
-		sendPanel.add(buSend, BorderLayout.SOUTH);
+		panel.add(lbTime, BorderLayout.WEST);
+		panel.add(calendar, BorderLayout.CENTER);
+		sendPanel.add(panel, BorderLayout.SOUTH);
+		panel.add(buSend, BorderLayout.SOUTH);
 
 		createReminderInput();
 		add(sendPanel, BorderLayout.SOUTH);
