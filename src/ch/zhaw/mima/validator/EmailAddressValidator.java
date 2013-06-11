@@ -25,7 +25,7 @@ public class EmailAddressValidator implements AddressValidator<EmailAddress> {
 		try {
 			new InternetAddress(address.getEmail()).validate();
 		} catch (AddressException e) {
-			throw new AddressValidatorException("Error in "+address.getEmail()+":\n"+e.getMessage());
+			throw new AddressValidatorException("Error in '"+address.getEmail()+"':\n"+e.getMessage());
 		}
 
 	}

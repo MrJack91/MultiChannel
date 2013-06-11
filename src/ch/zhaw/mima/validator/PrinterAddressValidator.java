@@ -40,7 +40,7 @@ public class PrinterAddressValidator implements AddressValidator<PrinterAddress>
 		Pattern pattern = Pattern.compile(PATTERN);
 		Matcher matcher = pattern.matcher(address.getPrinterIP());
 		if(!matcher.matches())
-			throw new AddressValidatorException("Error in "+address.getPrinterIP()+"\ninvalid ip");
+			throw new AddressValidatorException("Error in '"+address.getPrinterIP()+"'\ninvalid ip");
 	}
 
 	private void checkIfReachable(PrinterAddress address)  throws AddressValidatorException{

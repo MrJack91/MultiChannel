@@ -11,17 +11,16 @@ import ch.zhaw.mima.message.reminder.MMSReminder;
 import ch.zhaw.mima.message.reminder.Reminder;
 import ch.zhaw.mima.validator.AddressValidatorException;
 
-
 /**
  * @author michael
- *
+ * 
  */
 public class MmsModule extends AbstractMessagingModule<MMS> {
 
 	/**
 	 * 
 	 */
-  private static final long serialVersionUID = 1303619438427721818L;
+	private static final long serialVersionUID = 1303619438427721818L;
 
 	/**
 	 * construct
@@ -31,41 +30,48 @@ public class MmsModule extends AbstractMessagingModule<MMS> {
 		this.frameTitle = "MMS versenden";
 	}
 
-	/* (non-Javadoc)
-	 * @see ch.zhaw.mima.gui.AbstractMessagingModule#addAddressesToMessage(java.lang.String, ch.zhaw.mima.message.Message)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * ch.zhaw.mima.gui.AbstractMessagingModule#addAddressesToMessage(java.lang
+	 * .String, ch.zhaw.mima.message.Message)
 	 */
-  @Override
-  protected void addAddressesToMessage(String addressString, MMS message) {
-  	String[] addresses = addressString.split(",");
-  	for(String oneAddress: addresses)
-    	message.addAddress(new PhoneAddress(oneAddress));
-  }
+	@Override
+	protected void addAddressesToMessage(String addressString, MMS message) {
+		String[] addresses = addressString.split(",");
+		for (String oneAddress : addresses)
+			message.addAddress(new PhoneAddress(oneAddress));
+	}
 
-	/* (non-Javadoc)
-	 * @see ch.zhaw.mima.gui.AbstractMessagingModule#putMessageInQueue(ch.zhaw.mima.message.Message)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * ch.zhaw.mima.gui.AbstractMessagingModule#putMessageInQueue(ch.zhaw.mima
+	 * .message.Message)
 	 */
-  @Override
-  protected void putMessageInQueue(MMS message) {
-  	try {
-	    getApp().getMessagingService().addMessage(message);
-	    lbRecipient.setText("Empfänger");
-    } catch (AddressValidatorException e) {
-    	lbRecipient.setText("Empfänger - " + e.getMessage());
-    }
-	  
-  }
+	@Override
+	protected void putMessageInQueue(MMS message)
+			throws AddressValidatorException {
 
-	/* (non-Javadoc)
+		getApp().getMessagingService().addMessage(message);
+
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see ch.zhaw.mima.gui.AbstractMessagingModule#createMessage()
 	 */
-  @Override
-  protected MMS createMessage() {
-	  return new MMSImpl();
-  }
+	@Override
+	protected MMS createMessage() {
+		return new MMSImpl();
+	}
 
-@Override
-protected Reminder<MMS> createReminderMessage() {
-	return new MMSReminder();
-}
-	
+	@Override
+	protected Reminder<MMS> createReminderMessage() {
+		return new MMSReminder();
+	}
+
 }
