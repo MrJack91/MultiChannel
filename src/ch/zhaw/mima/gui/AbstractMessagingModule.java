@@ -77,6 +77,7 @@ public abstract class AbstractMessagingModule<T extends Message<? extends Addres
 	protected JLabel lbRecipient;
 	private JTextArea taRecipient;
 	private JTextArea taText;
+
 	protected JTextField taReminderRecipient;
 
 	private JPanel reminderToggleContainer;
@@ -85,6 +86,7 @@ public abstract class AbstractMessagingModule<T extends Message<? extends Addres
 	private JCalendarCombo reminderCalendar;
 
 	private JPanel sendPanel;
+
 
 	public void start() {
 		this.init();
@@ -129,6 +131,7 @@ public abstract class AbstractMessagingModule<T extends Message<? extends Addres
 	/**
 	 * 
 	 */
+
 	private void createReminderInput() {
 
 		JPanel reminderPanel = new JPanel();
@@ -182,6 +185,7 @@ public abstract class AbstractMessagingModule<T extends Message<? extends Addres
 		dimension.width = width;
 		component.setMinimumSize(dimension);
 
+
 	}
 
 	protected void showFrame() {
@@ -196,8 +200,10 @@ public abstract class AbstractMessagingModule<T extends Message<? extends Addres
 	 * write the recipient to the gui
 	 */
 	protected void createRecipientInput() {
+
 		JPanel panel = new JPanel();
 		panel.setLayout(new BorderLayout());
+
 		lbRecipient = new JLabel("Empfänger");
 		lbRecipient.setAlignmentX(Component.LEFT_ALIGNMENT);
 		taRecipient = new JTextArea();
@@ -284,6 +290,7 @@ public abstract class AbstractMessagingModule<T extends Message<? extends Addres
 	/**
 	 * 
 	 */
+
 	protected void sendMessage() {
 		T message = createMessage();
 		message.setText(taText.getText());
@@ -298,6 +305,7 @@ public abstract class AbstractMessagingModule<T extends Message<? extends Addres
 
 				addAddressesToMessage(taReminderRecipient.getText(),
 						(T) messageRemind);
+
 
 				putMessageInQueue((T) messageRemind);
 
@@ -325,8 +333,10 @@ public abstract class AbstractMessagingModule<T extends Message<? extends Addres
 	/**
 	 * @param message
 	 */
+
 	protected abstract void putMessageInQueue(T message)
 			throws AddressValidatorException;
+
 
 	/**
 	 * 

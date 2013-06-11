@@ -50,7 +50,7 @@ public class MailModule extends AbstractMessagingModule<Email> {
   protected void putMessageInQueue(Email message) throws AddressValidatorException {
  
 	    getApp().getMessagingService().addMessage(message);
-	
+
 	  
   }
 
