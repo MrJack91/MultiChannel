@@ -31,9 +31,7 @@ public class MailModule extends AbstractMessagingModule<Email> {
 		this.frameTitle = "Mail versenden";
 	}
 	
-	public void send() {
-		
-	}
+	
 
 	/* (non-Javadoc)
 	 * @see ch.zhaw.mima.gui.AbstractMessagingModule#createMessage()
@@ -58,11 +56,13 @@ public class MailModule extends AbstractMessagingModule<Email> {
 	 * @see ch.zhaw.mima.gui.AbstractMessagingModule#addAddresses(ch.zhaw.mima.message.Message)
 	 */
   @Override
-  protected void addAddressesToMessage(String addressString, Email message) {
+  protected void addAddressesToMessage(String addressString, Email message) throws AddressValidatorException {
   	String[] addresses = addressString.split(",");
   	for(String oneAddress: addresses) {
-  		System.out.println(oneAddress);
-  		message.addAddress(new EmailAddress(oneAddress));
+  		
+  		EmailAddress address = new EmailAddress(oneAddress);
+  		getApp().getMessagingService().getValidatorService().validate(address);
+		message.addAddress(address);
   	}
     	
   }

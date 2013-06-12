@@ -11,17 +11,16 @@ import ch.zhaw.mima.message.reminder.Reminder;
 import ch.zhaw.mima.message.reminder.SMSReminder;
 import ch.zhaw.mima.validator.AddressValidatorException;
 
-
 /**
  * @author michael
- *
+ * 
  */
 public class SmsModule extends AbstractMessagingModule<SMS> {
 
 	/**
 	 * 
 	 */
-  private static final long serialVersionUID = -5642229309912805372L;
+	private static final long serialVersionUID = -5642229309912805372L;
 
 	/**
 	 * construct
@@ -31,40 +30,54 @@ public class SmsModule extends AbstractMessagingModule<SMS> {
 		this.frameTitle = "SMS versenden";
 	}
 
-	/* (non-Javadoc)
-	 * @see ch.zhaw.mima.gui.AbstractMessagingModule#addAddressesToMessage(java.lang.String, ch.zhaw.mima.message.Message)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * ch.zhaw.mima.gui.AbstractMessagingModule#addAddressesToMessage(java.lang
+	 * .String, ch.zhaw.mima.message.Message)
 	 */
-  @Override
-  protected void addAddressesToMessage(String addressString, SMS message) {
-  	String[] addresses = addressString.split(",");
-  	for(String oneAddress: addresses)
-    	message.addAddress(new PhoneAddress(oneAddress));
-  }
+	@Override
+	protected void addAddressesToMessage(String addressString, SMS message)
+			throws AddressValidatorException {
+		String[] addresses = addressString.split(",");
+		for (String oneAddress : addresses) {
+			PhoneAddress address = new PhoneAddress(oneAddress);
+			getApp().getMessagingService().getValidatorService()
+					.validate(address);
+			message.addAddress(address);
+		}
+	}
 
-	/* (non-Javadoc)
-	 * @see ch.zhaw.mima.gui.AbstractMessagingModule#putMessageInQueue(ch.zhaw.mima.message.Message)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * ch.zhaw.mima.gui.AbstractMessagingModule#putMessageInQueue(ch.zhaw.mima
+	 * .message.Message)
 	 */
-  @Override
-  protected void putMessageInQueue(SMS message) throws AddressValidatorException  {
-  	
-	    getApp().getMessagingService().addMessage(message);
+	@Override
+	protected void putMessageInQueue(SMS message)
+			throws AddressValidatorException {
 
-  }
+		getApp().getMessagingService().addMessage(message);
 
-	/* (non-Javadoc)
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see ch.zhaw.mima.gui.AbstractMessagingModule#createMessage()
 	 */
-  @Override
-  protected SMS createMessage() {
-  	return new SMSImpl();
-  }
+	@Override
+	protected SMS createMessage() {
+		return new SMSImpl();
+	}
 
+	@Override
+	protected Reminder<SMS> createReminderMessage() {
 
-@Override
-protected Reminder<SMS> createReminderMessage() {
-	
-	return new SMSReminder();
-}
+		return new SMSReminder();
+	}
 
-	
 }

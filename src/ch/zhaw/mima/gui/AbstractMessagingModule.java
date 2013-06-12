@@ -304,8 +304,8 @@ public abstract class AbstractMessagingModule<T extends Message<? extends Addres
 				putMessageInQueue((T) messageRemind);
 
 			}
-
 			putMessageInQueue(message);
+			
 		} catch (AddressValidatorException e) {
 			showRecipientError(e);
 		}

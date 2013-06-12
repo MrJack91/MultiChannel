@@ -38,10 +38,15 @@ public class MmsModule extends AbstractMessagingModule<MMS> {
 	 * .String, ch.zhaw.mima.message.Message)
 	 */
 	@Override
-	protected void addAddressesToMessage(String addressString, MMS message) {
+	protected void addAddressesToMessage(String addressString, MMS message) throws AddressValidatorException {
 		String[] addresses = addressString.split(",");
-		for (String oneAddress : addresses)
-			message.addAddress(new PhoneAddress(oneAddress));
+		for (String oneAddress : addresses) {
+			PhoneAddress address = new PhoneAddress(oneAddress);
+
+			getApp().getMessagingService().getValidatorService()
+					.validate(address);
+			message.addAddress(address);
+		}
 	}
 
 	/*

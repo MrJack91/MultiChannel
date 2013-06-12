@@ -44,6 +44,10 @@ public class MessagingService implements Tickable {
 		smsQueue = new MessageQueueImpl<SMS>();
 		emailQueue = new MessageQueueImpl<Email>();
 	}
+	
+	public ValidatorService getValidatorService() {
+		return validatorService;
+	}
 
 	public void addMessage(Email message) throws AddressValidatorException {
 

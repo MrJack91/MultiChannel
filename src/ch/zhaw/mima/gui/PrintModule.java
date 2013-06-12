@@ -39,10 +39,15 @@ public class PrintModule extends AbstractMessagingModule<PrinterJob> {
 	 */
 	@Override
 	protected void addAddressesToMessage(String addressString,
-			PrinterJob message) {
+			PrinterJob message) throws AddressValidatorException {
 		String[] addresses = addressString.split(",");
-		for (String oneAddress : addresses)
-			message.addAddress(new PrinterAddress(oneAddress));
+		for (String oneAddress : addresses) {
+			PrinterAddress address = new PrinterAddress(oneAddress);
+			getApp().getMessagingService().getValidatorService()
+					.validate(address);
+
+			message.addAddress(address);
+		}
 	}
 
 	/*
