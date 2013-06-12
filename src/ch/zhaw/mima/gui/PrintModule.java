@@ -42,7 +42,7 @@ public class PrintModule extends AbstractMessagingModule<PrinterJob> {
 			PrinterJob message) throws AddressValidatorException {
 		String[] addresses = addressString.split(",");
 		for (String oneAddress : addresses) {
-			PrinterAddress address = new PrinterAddress(oneAddress);
+			PrinterAddress address = new PrinterAddress(oneAddress.trim());
 			getApp().getMessagingService().getValidatorService()
 					.validate(address);
 

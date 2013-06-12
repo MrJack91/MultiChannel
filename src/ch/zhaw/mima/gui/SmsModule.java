@@ -42,7 +42,7 @@ public class SmsModule extends AbstractMessagingModule<SMS> {
 			throws AddressValidatorException {
 		String[] addresses = addressString.split(",");
 		for (String oneAddress : addresses) {
-			PhoneAddress address = new PhoneAddress(oneAddress);
+			PhoneAddress address = new PhoneAddress(oneAddress.trim());
 			getApp().getMessagingService().getValidatorService()
 					.validate(address);
 			message.addAddress(address);

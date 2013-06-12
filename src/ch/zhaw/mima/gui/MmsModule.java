@@ -41,7 +41,7 @@ public class MmsModule extends AbstractMessagingModule<MMS> {
 	protected void addAddressesToMessage(String addressString, MMS message) throws AddressValidatorException {
 		String[] addresses = addressString.split(",");
 		for (String oneAddress : addresses) {
-			PhoneAddress address = new PhoneAddress(oneAddress);
+			PhoneAddress address = new PhoneAddress(oneAddress.trim());
 
 			getApp().getMessagingService().getValidatorService()
 					.validate(address);

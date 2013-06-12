@@ -60,7 +60,7 @@ public class MailModule extends AbstractMessagingModule<Email> {
   	String[] addresses = addressString.split(",");
   	for(String oneAddress: addresses) {
   		
-  		EmailAddress address = new EmailAddress(oneAddress);
+  		EmailAddress address = new EmailAddress(oneAddress.trim());
   		getApp().getMessagingService().getValidatorService().validate(address);
 		message.addAddress(address);
   	}
